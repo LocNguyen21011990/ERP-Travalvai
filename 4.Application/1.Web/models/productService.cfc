@@ -235,7 +235,7 @@ component extends="cborm.models.VirtualEntityService" singleton{
 		}
 
 		if(not isNull(product.getPattern())){
-			var pvs = entityload("pattern_variantions",{pattern=product.getPattern()});
+			var pvs = entityload("pattern_variantions",{pattern : product.getPattern()});
 			for(pv in pvs){
 				var newpv = {
 					"id_pattern_var" = pv.getid_pattern_var(),
@@ -244,6 +244,8 @@ component extends="cborm.models.VirtualEntityService" singleton{
 				arrayAppend(pattern_vars,newpv);
 			}
 		}
+		
+
 		prd = {
 			"id_product"       = product.getId_product(),
 			"pr_version"       = val(product.getPr_version()),

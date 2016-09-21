@@ -186,7 +186,8 @@
 	                    .withOption('createdRow', createdRow)
 	                    .withOption('order', [1, 'desc'])
 	                    .withOption('searching', false)
-	                    .withOption('paging', false);
+	                    .withOption('paging', false)
+	                    .withOption('select', { style: 'single' });
 	    vm.dtColumnsCus  = [
 
 	        DTColumnBuilder.newColumn('cost_code').withTitle('COST CODE').withOption('width',"9%"),
@@ -248,9 +249,6 @@
 	    			vm.prd.plFactoryCus = data.factoryPriceCus;
 	    			vm.prd.plZoneCus 	= data.agentPriceCus;
 	    			vm.prd.plFinalCus 	= data.finalPriceCus;
-
-	    			vm.prd.clubPriceCus = data.finalPriceCus;
-	    			vm.prd.webPriceCus  = data.finalPriceCus;
 	    			getFinalPrice();
 	    			$scope.$applyAsync();
 	    		}
@@ -278,16 +276,11 @@
 
 			    	, plClubManual : vm.prd.pr_club_12
 			    	, plWebManual  : vm.prd.pr_web_13
-
-			    	, plClubCus	   : vm.prd.clubPriceCus
-			    	, plWebCus	   : vm.prd.webPriceCus
 			    },
 	    		success: function(data){
 	    			vm.prd.pr_9_valid 	= data.factoryFinalPrice;
 	    			vm.prd.pr_10_valid 	= data.agentFinalPrice;
 	    			vm.prd.pr_11_valid 	= data.finalFinalPrice;
-	    			vm.prd.finalClubPrice	= data.finalClubPrice;
-			    	vm.prd.finalWebPrice	= data.finalWebPrice;
 	    			$scope.$applyAsync();
 	    		}
 	    	});

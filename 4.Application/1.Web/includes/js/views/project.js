@@ -28,11 +28,13 @@
       vm.comment.todaycomment = new Date($filter('date')(Date.now(),"yyyy/MM/dd "));
       vm.dtOptions = DTOptionsBuilder.fromSource('/index.cfm/project/getComment?idproject='+window.location.search.slice(4))
           .withPaginationType('full_numbers')
-          .withOption('createdRow', createdRow);
+          .withOption('createdRow', createdRow)
+          .withOption('select', { style: 'single' });
 
       vm.pddtOptions= DTOptionsBuilder.fromSource("/index.cfm/project/getProj_product?idproject="+window.location.search.slice(4))
           .withPaginationType('full_numbers')
-          .withOption('createdRow', createdRow);
+          .withOption('createdRow', createdRow)
+          .withOption('select', { style: 'single' });
 
       vm.dtColumns = [
             DTColumnBuilder.newColumn('DATE').withTitle('DATE')

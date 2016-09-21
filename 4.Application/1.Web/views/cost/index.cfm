@@ -275,7 +275,7 @@
                                                 <th rowspan="2">LAST UPDATE</th>
                                                 <th rowspan="2">WEIGHT(gr)</th>
                                                 <th rowspan="2">VOLUME(cm3)</th>
-                                                <th rowspan="2" >VERS.</th>
+                                                <th rowspan="2" >VER(s)</th>
                                                 <th rowspan="2" >DETAIL</th>
                                                 <th rowspan="2" >EDIT/ DELETE</th>
                                             </tr>                                            
@@ -304,7 +304,7 @@
                                                 <th rowspan="2">LAST UPDATE</th>
                                                 <th rowspan="2">WEIGHT(gr)</th>
                                                 <th rowspan="2">VOLUME(cm3)</th>
-                                                <th rowspan="2">VERSION</th>
+                                                <th rowspan="2">VER(s)</th>
                                                 <th rowspan="2">SKETCH</th>
                                                 <th rowspan="2"></th>
                                             </tr>                                            
@@ -328,6 +328,7 @@
 	</div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>
 <script src="/includes/js/angular-datatables.light-columnfilter.min.js"></script>

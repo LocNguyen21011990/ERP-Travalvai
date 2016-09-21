@@ -202,18 +202,10 @@ component output="false" displayname=""  {
 	    	var plAgentCus 		= rc.plAgentCus;
 	    	var plFinalCus  	= rc.plFinalCus;
 
-
-	    	var plClubManual	= rc.plClubManual;
-	    	var plWebManual		= rc.plWebManual;
-	    	var plClubCus		= rc.plClubCus;
-	    	var plWebCus		= rc.plWebCus;
-
 	    	var factoryFinalPrice = calFinalPrice(plFactory, plFactoryManual, plFactoryCus, id_contract);
 	    	var agentFinalPrice	  = calFinalPrice(plAgent, plAgentManual, plAgentCus, id_contract);
 	    	var finalFinalPrice   = calFinalPrice(plFinal, plFinalManual, plFinalCus, id_contract);
-	    	var finalClubPrice	  = calFinalPrice(0, plClubManual, plClubCus, id_contract);
-	    	var finalWebPrice 	  = calFinalPrice(0, plWebManual,  plClubCus, id_contract);
-	    	event.renderData(type="json",data = {"factoryFinalPrice":factoryFinalPrice, "agentFinalPrice": agentFinalPrice, "finalFinalPrice" : finalFinalPrice, "finalClubPrice" : finalClubPrice, "finalWebPrice" : finalWebPrice});
+	    	event.renderData(type="json",data = {"factoryFinalPrice":factoryFinalPrice, "agentFinalPrice": agentFinalPrice, "finalFinalPrice" : finalFinalPrice});
 		}
 	}
 
@@ -854,26 +846,29 @@ component output="false" displayname=""  {
 	public function getPatternVar(event, rc, prc) {
 		var usertype = userService.getUserLevel();
 		var lstPattVar = [];
-		if(usertype neq 4)
-		{
-			var patternsVar = QueryExecute("SELECT * FROM travalvai.pattern_variantions pv
-											inner join pattern_var_des pvd on pv.id_pattern_var = pvd.id_pattern_var
-											where pvd.id_language = #userService.getLoggedInUser().getLanguage().getId_language()#");
-			if(!isnull(patternsVar)) {
-				for(item in patternsVar) {
-					var str = {};
-					str["id_pattern_var"] = item.id_pattern_var;
-					str["pv_code"] = item.pv_code;
-					arrayAppend(lstPattVar, str);
+		if(event.GETHTTPMETHOD() == "POST"){
+			if(usertype neq 4){
+				var patternsVar = QueryExecute("SELECT id_pattern_var, pv_code
+												FROM pattern_variantions pv
+													inner join patterns
+														on patterns.id_pattern = pv.id_pattern
+												WHERE pv.id_pattern = #rc.id_pattern#");
+				if(!isnull(patternsVar)) {
+					for(item in patternsVar) {
+						var str = {};
+						str["id_pattern_var"] = item.id_pattern_var;
+						str["pv_code"] = item.pv_code;
+						arrayAppend(lstPattVar, str);
+					}
 				}
+				event.renderData(type="json",data=lstPattVar);
 			}
-			event.renderData(type="json",data=lstPattVar);
 		}
 	}
 
 	public function getSizes(event, rc, prc) {
 		var usertype = userService.getUserLevel();
-		var lstSizes = []
+		var lstSizes = [];
 		if(usertype neq 4)
 		{
 			var sizes = entityLoad("sizes");

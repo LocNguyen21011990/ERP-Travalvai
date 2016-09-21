@@ -21,6 +21,13 @@
         border: 0 none;
         margin-top: -14px;
     }
+
+    th.th-text-left{
+        text-align: left !important;
+    }
+
+
+
 </style>
 <section id="widget-grid" class="" ng-app='price.List.zone' ng-controller="BindAngularDirectiveCtrl as showCase">
     <div class="row">
@@ -439,7 +446,32 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table id="datatable_fixed_column_1" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" style="display:none;"></table>
+                                        <table id="datatable_fixed_column_1" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" style="display:none;">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2">CODE</th>
+                                                    <th rowspan="2">DESCRIPTION</th>
+                                                    <th rowspan="2">SEASON</th>
+                                                    <th colspan="2"  style="text-align:center;">PRICE LIST FACTORY</th>
+                                                    <th rowspan="2">P.L. CURRENCY</th>
+                                                    <th rowspan="2">EX. RATE</th>
+                                                    <th rowspan="2">DATE</th>
+                                                    <th rowspan="2">UPDATE</th>
+                                                    <th rowspan="2">CORRECTION</th>
+                                                    <th rowspan="2">COMMISSION</th>
+                                                    <th rowspan="2">FREIGHT</th>
+                                                    <th rowspan="2">TAXES</th>
+                                                    <th rowspan="2">MARGIN</th>
+                                                    <th rowspan="2">LANGUAGE</th>
+                                                    <th rowspan="2">DETAIL</th>
+                                                    <th rowspan="2"></th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th style="border-right-width: 1px;"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -464,6 +496,7 @@
     </div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>
 <script src="/includes/js/angular-datatables.light-columnfilter.min.js"></script>

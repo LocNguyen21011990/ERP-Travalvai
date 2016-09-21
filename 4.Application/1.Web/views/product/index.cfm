@@ -2,6 +2,12 @@
 .dfdfdfd{
     display:  list-item;
 }
+tr > th{
+   background-color: #F4F4F4 !important; 
+}
+tr > th.th-align-left {
+    text-align: left !important;
+}
 </style>
 <section id="widget-grid"  ng-app='product.List' ng-controller="BindAngularDirectiveCtrl as showCase">
     <div class="row">
@@ -45,6 +51,28 @@
                             <div class="tab-pane fade in active" id="s1">
                                 <div class="table-responsive">
                                     <table id="textviewTable" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptionsTextViewTable" dt-columns="showCase.dtColumnsTextViewTable" dt-instance="showCase.dtInstance1">
+                                         <thead>
+                                            <tr>
+                                                <th rowspan="2">PRODUCT</th>
+                                                <th colspan="2" class="text-center">GARMENT</th>
+                                                <th colspan="2" class="text-center">COSTING</th>
+                                                <th rowspan="2">DESCRIPTION </th>
+                                                <th rowspan="2">SIZES</th>
+                                                <th rowspan="2">ZONE</th>
+                                                <th rowspan="2">AGENT</th>
+                                                <th rowspan="2">CUSTOMER</th>
+                                                <th rowspan="2">SECTION</th>
+                                                <th rowspan="2">STATUS</th>
+                                                <th rowspan="2">ACTIONS</th>
+                                                <th rowspan="2">DETAIL</th>
+                                            </tr>                                            
+                                            <tr>
+                                                <th>CODE</th>
+                                                <th>VERSION</th>
+                                                <th>CODE</th>
+                                                <th style="border-right-width: 1px;">VERSION</th>
+                                            </tr>                                          
+                                        </thead>
                                     </table>
                                 </div>
 
@@ -52,6 +80,29 @@
                             <div class="tab-pane fade" id="s2">
                                 <div class="table-responsive">
                                     <table id="textimagesviewTable" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptionsTextViewTable" dt-columns="showCase.dtColumnsTextImagesViewTable" dt-instance="showCase.dtInstance2">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">PRODUCT</th>
+                                                <th colspan="2" class="text-center">GARMENT</th>
+                                                <th colspan="2" class="text-center">COSTING</th>
+                                                <th rowspan="2">DESCRIPTION </th>
+                                                <th rowspan="2">SIZES</th>
+                                                <th rowspan="2">ZONE</th>
+                                                <th rowspan="2">AGENT</th>
+                                                <th rowspan="2">CUSTOMER</th>
+                                                <th rowspan="2">SECTION</th>
+                                                <th rowspan="2">STATUS</th>
+                                                <th rowspan="2">SKETCH</th>
+                                                <th rowspan="2">ACTIONS</th>
+                                                <th rowspan="2">DETAIL</th>
+                                            </tr>                                            
+                                            <tr>
+                                                <th>CODE</th>
+                                                <th>VERSION</th>
+                                                <th>CODE</th>
+                                                <th style="border-right-width: 1px;">VERSION</th>
+                                            </tr> 
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -65,6 +116,32 @@
                             <div class="tab-pane fade" id="s4">
                                 <div class="table-responsive">
                                     <table id="pricesviewTable" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptionsTextViewTable" dt-columns="showCase.dtColumnsTextPricesViewTable" dt-instance="showCase.dtInstance3">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">PRODUCT</th>
+                                                <th colspan="2" class="text-center">GARMENT</th>
+                                                <th colspan="2" class="text-center">COSTING</th>
+                                                <th rowspan="2">DESCRIPTION </th>
+                                                <th rowspan="2">CUSTOMER</th>
+                                                <th rowspan="2">STATUS</th>
+                                                <th colspan="4" class="text-center">PRICE</th>                                               
+                                                <th rowspan="2">PRICE CLUB</th>
+                                                <th rowspan="2">PRICE WEB</th>
+                                                <th rowspan="2">SKETCH</th>
+                                                <th rowspan="2">ACTIONS</th>
+                                                <th rowspan="2">DETAIL</th>
+                                            </tr>                                            
+                                            <tr>
+                                                <th>CODE</th>
+                                                <th>VERSION</th>
+                                                <th>CODE</th>
+                                                <th>VERSION</th>
+                                                <th>PRICE</th>
+                                                <th>MANUAL</th>
+                                                <th>CUSTOM</th>
+                                                <th style="border-right-width: 1px;">FINAL</th>
+                                            </tr> 
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -334,6 +411,7 @@
     </div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>
 <script src="/includes/js/angular-datatables.light-columnfilter.min.js"></script>

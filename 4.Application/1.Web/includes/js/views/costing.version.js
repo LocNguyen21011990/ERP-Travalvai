@@ -101,7 +101,8 @@
                 type : 'text'
             }
           })
-          .withOption('createdRow', createdRow);
+          .withOption('createdRow', createdRow)
+          .withOption('select', { style: 'single' });;
       vm.dtColumns = [
           DTColumnBuilder.newColumn('CV_VERSION').withTitle('VERSION No.').withOption('width', '10%'),
           DTColumnBuilder.newColumn('CV_DESCRIPTION').withTitle('DESCRIPTION'),
@@ -113,7 +114,7 @@
           DTColumnBuilder.newColumn('CREATED').withTitle('DATE CREATION'),
           DTColumnBuilder.newColumn('UPDATED').withTitle('DATE UPDATE'),
           DTColumnBuilder.newColumn(null).withTitle('ACTIONS').notSortable()
-              .renderWith(actionsHtml).withOption('width','65px')
+              .renderWith(actionsHtml).withOption('width','9%')
       ];
 
       function numberCv_fty(data, type, full, meta){

@@ -27,7 +27,7 @@
      vm.isCreateByCopy   = false;
      vm.userInfo         = {};
      vm.PListCurrencyCode    = 'USD';
-     vm.exRateUSDToPListCurrency = 1;
+     vm.exRateUSDToPListCurrency = '';
      vm.exRatePListFtyToFtyCurrency = '';
 
      vm.isDisableSourceZone = true;
@@ -38,6 +38,7 @@
      vm.changeSourceZone = changeSourceZone;
      vm.changeSourcePList = changeSourcePList;
      vm.changeexrate = changeexrate;         
+     vm.priceListFactoryDetail = priceListFactoryDetail;         
      getOldSeason();
 
       $.ajax({
@@ -93,22 +94,26 @@
           })
           .withOption('createdRow', createdRow)
           .withOption('order', [8, 'desc'])
-          .withOption('stateSave', true);
+          .withOption('stateSave', true)
+          .withOption('select', { style: 'single' });
      vm.dtColumns  = [
           DTColumnBuilder.newColumn('CODE').withTitle('CODE'),
-          DTColumnBuilder.newColumn('DES').withTitle('DESCRIPTION'),
+          DTColumnBuilder.newColumn('DES').withTitle('DESCRIPTION').withOption('width', '20%'),
           DTColumnBuilder.newColumn('ZCODE').withTitle('ZONE'),
-          DTColumnBuilder.newColumn('SEASON').withTitle('SEASON').withClass("text-right"),
+          DTColumnBuilder.newColumn('SEASON').withTitle('SEASON').withClass("text-right th-align-left"),
           DTColumnBuilder.newColumn('FTYCURRENCY').withTitle('FTY CURRENCY'),
           DTColumnBuilder.newColumn('CURRPL').withTitle('P.LIST. CURRENCY'),
-          DTColumnBuilder.newColumn('EX_RATE').withTitle('EX. RATE').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('CORRECTION').withTitle('CORRECTION').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('PLFDATE').withTitle('DATE').withOption('width', '88px').withClass("text-right"),
-          DTColumnBuilder.newColumn('PLFUPDATE').withTitle('UPDATE').withOption('width', '88px').withClass("text-right"),
-          DTColumnBuilder.newColumn('ID').withTitle('').notSortable().renderWith(actionsHtml).withOption('width', '88px')
+          DTColumnBuilder.newColumn('EX_RATE').withTitle('EX. RATE').renderWith(formatNumber).withClass("text-right th-align-left"),
+          DTColumnBuilder.newColumn('CORRECTION').withTitle('CORRECTION').renderWith(formatNumber).withClass("text-right th-align-left"),
+          DTColumnBuilder.newColumn('PLFDATE').withTitle('DATE').withOption('width', '6%').withClass("text-right th-align-left"),
+          DTColumnBuilder.newColumn('PLFUPDATE').withTitle('UPDATE').withOption('width', '6%').withClass("text-right th-align-left"),
+          DTColumnBuilder.newColumn('ID').withTitle('DETAIL').notSortable().renderWith(actionsHtmlDetail).withOption('width', '3%').withClass("text-center th-align-left").notSortable(),
+          DTColumnBuilder.newColumn('ID').withTitle('ACTIONS').notSortable().renderWith(actionsHtml).withOption('width', '8%').withClass("text-center th-align-left")
       ];
 
       vm.formatNumber = function(number) {
+        if(typeof(number) === 'undefined')
+          return 0;
         return $filter("number")(number, 2);
       }
 
@@ -161,7 +166,8 @@
             vm.user.devidedManualExRate = roundDecimalPlaces(1 / vm.user.ex_rate,2);
             vm.exRateUSDToPListCurrency = data.cc_value;
             vm.PListCurrencyCode = theSelection;
-            vm.exRaseWithPriceCurrency = '('+vm.ftycurrency+'/'+ vm.PListCurrencyCode+')';
+            vm.exRateWithPriceCurrencyLabel = '('+vm.ftycurrency+'/'+ vm.PListCurrencyCode+')';
+            vm.exRateUSDWithPriceCurrencyLabel = '('+'USD'+'/'+ vm.PListCurrencyCode+')';
             vm.exRatePListFtyToFtyCurrency =  $filter("number")(roundDecimalPlaces((vm.currFtyCurrencyExRate.cc_value / vm.exRateUSDToPListCurrency),2),2);
             vm.dividedExRatePListFtyToFtyCurrency =  roundDecimalPlaces(1/(vm.currFtyCurrencyExRate.cc_value / vm.exRateUSDToPListCurrency),2);
           }
@@ -224,6 +230,13 @@
             return '';
           }
       }
+      function priceListFactoryDetail(id_plf) {
+        window.location.href = "/index.cfm/basicdata.price_list_factory_detail?id=" + id_plf;
+      }
+      function actionsHtmlDetail(data, type, full, meta){
+        return '<span class="txt-color-green btngotoplfdetail" title="Go to price list factory detail" ng-click="showCase.priceListFactoryDetail(' + data + ')">' +
+          '<i class="ace-icon bigger-130 fa fa-sign-out"></i></span>';
+      }
 
       vm.counter = 1;
       vm.search = {};
@@ -231,7 +244,8 @@
       $http.get("/index.cfm/price_list_factory/getFactoryCurrency").success(function(dataResponse){
         vm.ftycurrency = dataResponse.CURRENCY;
         vm.ftyid = dataResponse.IDFACTORY;
-        vm.exRaseWithPriceCurrency = '('+vm.ftycurrency+'/'+'...'+')';
+        vm.exRateWithPriceCurrencyLabel = '('+vm.ftycurrency+'/'+'...'+')';
+        vm.exRateUSDWithPriceCurrencyLabel = '('+'USD' +'/'+'...'+')';
       });
 
       $http.get("/index.cfm/basicdata/getZone").success(function(dataResponse){
@@ -418,8 +432,9 @@
         vm.PListCurrencyCode = 'USD';
         vm.exRatePListFtyToFtyCurrency =  '';
         vm.dividedExRatePListFtyToFtyCurrency = '';
-        vm.exRateUSDToPListCurrency = 1;
-        vm.exRaseWithPriceCurrency = '('+vm.ftycurrency+'/'+'...'+')';
+        vm.exRateUSDToPListCurrency = '';
+        vm.exRateWithPriceCurrencyLabel = '('+vm.ftycurrency+'/'+'...'+')';
+        vm.exRateUSDWithPriceCurrencyLabel = '('+'USD' +'/'+'...'+')';
       }
 
       vm.rangeseason = function(count){

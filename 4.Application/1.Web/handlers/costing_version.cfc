@@ -5,7 +5,7 @@ component output="false" displayname=""  {
 	 property  name='languagesService'            inject='entityService:languages';
 	 property  name='userService' 				  inject='userService';
 	 property  name='currencyConvertService' 	  inject='currency_convertService';
-	 property  name='priceListZoneDetailsService' 	  	  inject='entityService:price_list_zone_details';
+	 property  name='priceListZoneDetailsService' 	  	  inject='price_list_zone_detailsService';
 	 property  name='priceListFactoryDetailService' 	  inject='entityService:price_list_factory_detail';
 
 	public function init(){
@@ -262,8 +262,6 @@ component output="false" displayname=""  {
 							var plf = plfd.getPrice_list_factory();
 							plfd.setplfd_fty_cost_0(costingVersion.getcv_fty_cost_0());
 
-							// var fty_cc = QueryExecute("select id_curr_conv,cc_value,cc_date,id_currency from currency_convert where cc_date <= CURDATE() and id_currency = #factory.getCurrency().getId_currency()# order by cc_date desc limit 1");
-							// currencyConvertService.getLatest_Cc(factory.getCurrency().getId_currency());
 							var plf_cc = plf.getPlf_Ex_Rate();
 
 							var plfd_fty_sell_1 = costingVersion.getcv_fty_cost_0() + costingVersion.getcv_fty_cost_0()*plf.getplf_correction()/100;
@@ -272,13 +270,20 @@ component output="false" displayname=""  {
 							plfd.setplfd_fty_sell_1(plfd_fty_sell_1);
 							plfd.setplfd_fty_sell_2(plfd_fty_sell_2);
 							priceListFactoryDetailService.save(plfd);
+							var plzds = entityload("price_list_zone_details",{price_list_factory_detail: plfd});
+							for(plzd in plzds){
+								priceListZoneDetailsService.updatePriceListZoneDetail(plzd);
+							}
 						}
 					}
 
 					if(rc.createonpl == true) {
 						costing = EntityLoad("costing", {id_cost: rc.id_cost}, true);
-						plf = EntityLoad("price_list_factory", {factory: factory});
-						for (item_plf in plf) {
+
+						var plfds = EntityLoad("price_list_factory_detail", {costing: costing});
+
+						for (plfd in plfds) {
+							var item_plf = plfd.getPrice_list_factory();
 							var checkCV = entityLoad("price_list_factory_detail", {costing_version: costingVersion, price_list_factory: item_plf},true);
 							if(isnull(checkCV)) {
 								plfDetail = EntityNew("price_list_factory_detail");

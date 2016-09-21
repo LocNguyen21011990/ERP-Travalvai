@@ -11,6 +11,7 @@
 		vm.showModalAddNew       = showModalAddNew;
 		vm.showModalEditProduct  = showModalEditProduct;
 		vm.saveUpdateProduct     = saveUpdateProduct;
+		vm.goToDetail     		 = goToDetail;
 		vm.refresh               = refresh;
 		vm.dtInstance1           = {};
 		vm.dtInstance2           = {};
@@ -140,14 +141,15 @@
 	                type : 'text'
 	            }
           	})
-		  	.withOption('createdRow', createdRow);
+		  	.withOption('createdRow', createdRow)
+		  	.withOption('select', { style: 'single' });
 
 		vm.dtColumnsTextViewTable = [
 			DTColumnBuilder.newColumn('IDPRODUCT').withTitle('PRODUCT'),
-		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('GARMENT CODE'),
+		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('CODE'),
 		  	DTColumnBuilder.newColumn('VERSION').withTitle('VERSION'),
-		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('COST CODE'),
-		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('COST CODE VERSION'),
+		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('CODE'),
+		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('VERSION'),
 		  	DTColumnBuilder.newColumn('DESCRIPTION').withTitle('DESCRIPTION'),
 		  	DTColumnBuilder.newColumn('SIZES').withTitle('SIZES'),
 		  	DTColumnBuilder.newColumn('ZONE').withTitle('ZONE'),
@@ -155,15 +157,16 @@
 		  	DTColumnBuilder.newColumn('CUSTOMER').withTitle('CUSTOMER'),
 		  	DTColumnBuilder.newColumn('SECTION').withTitle('SECTION'),
 		  	DTColumnBuilder.newColumn('STATUS').withTitle('STATUS'),
-		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtml)
+		  	DTColumnBuilder.newColumn(null).withTitle('DETAIL').renderWith(actionsHtmlDetail).withOption('width', "4%").withClass("text-center").notSortable(),
+		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtml).notSortable()
 		];
 
 		vm.dtColumnsTextImagesViewTable = [
 			DTColumnBuilder.newColumn('IDPRODUCT').withTitle('PRODUCT'),
-		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('GARMENT CODE'),
+		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('CODE'),
 		  	DTColumnBuilder.newColumn('VERSION').withTitle('VERSION'),
-		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('COST CODE'),
-		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('COST CODE VERSION'),
+		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('CODE'),
+		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('VERSION'),
 		  	DTColumnBuilder.newColumn('DESCRIPTION').withTitle('DESCRIPTION'),
 		  	DTColumnBuilder.newColumn('SIZES').withTitle('SIZES'),
 		  	DTColumnBuilder.newColumn('ZONE').withTitle('ZONE'),
@@ -172,27 +175,36 @@
 		  	DTColumnBuilder.newColumn('SECTION').withTitle('SECTION'),
 		  	DTColumnBuilder.newColumn('STATUS').withTitle('STATUS'),
 		  	DTColumnBuilder.newColumn('SKETCH').withTitle('SKETCH').renderWith(sketchDisplay),
-		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtml)
+		  	DTColumnBuilder.newColumn(null).withTitle('DETAIL').renderWith(actionsHtmlDetail).withOption('width', "4%").withClass("text-center").notSortable(),
+		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtml).notSortable()
 		];
 
 		vm.dtColumnsTextPricesViewTable = [
 			DTColumnBuilder.newColumn('IDPRODUCT').withTitle('PRODUCT'),
-		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('GARMENT CODE'),
+		  	DTColumnBuilder.newColumn('GARMENTCODE').withTitle('CODE'),
 		  	DTColumnBuilder.newColumn('VERSION').withTitle('VERSION'),
-		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('COST CODE'),
-		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('COST CODE VERSION'),
+		  	DTColumnBuilder.newColumn('COST_CODE').withTitle('CODE'),
+		  	DTColumnBuilder.newColumn('COST_CODE_VERS').withTitle('VERSION'),
 		  	DTColumnBuilder.newColumn('DESCRIPTION').withTitle('DESCRIPTION'),
 		  	DTColumnBuilder.newColumn('CUSTOMER').withTitle('CUSTOMER'),
 		  	DTColumnBuilder.newColumn('STATUS').withTitle('STATUS'),
-		  	DTColumnBuilder.newColumn('PRICE').withTitle('PRICE').renderWith(priceDisplay),
-		  	DTColumnBuilder.newColumn('CUSTOMIZE').withTitle('CUSTOM').renderWith(customizeDisplay),
-		  	DTColumnBuilder.newColumn('MANUAL').withTitle('MANUAL').renderWith(manualDisplay),
-		  	DTColumnBuilder.newColumn('VALID').withTitle('TOTAL PRICE').renderWith(validDisplay),
-		  	DTColumnBuilder.newColumn('CLUB_12').withTitle('PRICE CLUB').renderWith(priceClubDisplay),
-		  	DTColumnBuilder.newColumn('WEB_13').withTitle('PRICE WEB').renderWith(priceWebDisplay),
+		  	DTColumnBuilder.newColumn('PRICE').withTitle('PRICE LIST').renderWith(priceDisplay).withClass('text-right  th-align-left'),
+		  	DTColumnBuilder.newColumn('MANUAL').withTitle('MANUAL').renderWith(manualDisplay).withClass('text-right  th-align-left'),
+		  	DTColumnBuilder.newColumn('CUSTOMIZE').withTitle('CUSTOM').renderWith(customizeDisplay).withClass('text-right  th-align-left'),
+		  	DTColumnBuilder.newColumn('VALID').withTitle('FINAL').renderWith(validDisplay).withClass('text-right  th-align-left'),
+		  	DTColumnBuilder.newColumn('CLUB_12').withTitle('PRICE CLUB').renderWith(priceClubDisplay).withClass('text-right  th-align-left'),
+		  	DTColumnBuilder.newColumn('WEB_13').withTitle('PRICE WEB').renderWith(priceWebDisplay).withClass('text-right  th-align-left'),
 		  	DTColumnBuilder.newColumn('SKETCH').withTitle('SKETCH').renderWith(sketchDisplay),
-		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtmlFull)
+		  	DTColumnBuilder.newColumn(null).withTitle('DETAIL').renderWith(actionsHtmlDetail).withOption('width', "4%").withClass("text-center").notSortable(),
+		  	DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtmlFull).notSortable()
 		];
+		function goToDetail(productID) {
+            window.location.href = "/index.cfm/product.edit?id=" + productID;
+        }
+		function actionsHtmlDetail(data, type, full, meta) {
+            return '<span class="txt-color-green btngotodetail" title="Go to product detail" ng-click="showCase.goToDetail(' + data.IDPRODUCT + ')">' +
+                '<i class="ace-icon bigger-130 fa fa-sign-out"></i></span>';
+        }
 		function priceDisplay(data, type, full, meta) {
 			return '<span style="minheight:50px;">' +$filter("number")(data.sell_4,2)+'</span><hr><span style="minheight:50px;">' + $filter("number")(data.sell_6,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_8,2) + '</span>';
 		}
@@ -573,7 +585,7 @@
 			    type: 'POST',
 			    url: '/index.cfm/product/getPatternVar',
 			    data: {
-			    	id_pattern : $('#pattern').val()
+			    	id_pattern : vm.user.pattern
 			    },
 			    success: function(data) {
 			    	if(data.length > 0){

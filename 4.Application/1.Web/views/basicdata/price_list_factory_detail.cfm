@@ -10,9 +10,10 @@
 	.factory-detail>div:last-child{
 		padding-right: 10px;
 	}
-	th.text-right{
+	th.th-align-left{
 		text-align: left !important;
 	}
+
 </style>
 <section id="widget-grid" class="" ng-app="price_list_factory_detail" ng-controller="BindAngularDirectiveCtrl as showCase"  ng-cloak>
     <div class="row">
@@ -127,11 +128,11 @@
 
 											<th colspan="2" class="text-center">FACTORY</th>
 
-											<th colspan="2" class="text-center">FTY SELL CALC</th>
+											<th colspan="2" class="text-center">FACTORY</th>
 
-											<th colspan="2" class="text-center">P.L. SELL CALC</th>
+											<th colspan="2" class="text-center">PRICE LIST</th>
 
-											<th colspan="2" class="text-center">FTY SELL PRICE</th>
+											<th colspan="2" class="text-center">FACTORY</th>
 											<th></th>
                                 		</tr>
                                 		<tr>
@@ -233,7 +234,7 @@
 </div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
-
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/views/price_list_factory_detail.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>

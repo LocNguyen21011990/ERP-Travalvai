@@ -320,24 +320,11 @@
 												      		<input type="number" class="form-control" id="pr_club_12" name="pr_club_12" ng-model="showCase.prd.pr_club_12" ng-pattern="showCase.regexNumber" ng-change="showCase.onChangeFinalPriceClub()" min="0">
 												      		<p ng-show="userForm.pr_club_12.$error.pattern  && !userForm.pr_club_12.$pristine" class="help-block">Can not enter special char</p>
 												    	</div>
-
-												    	<div class="col-sm-4">
-												      		<span class="form-control" id="clubPriceCus" name="clubPriceCus" min="0" ng-model="showCase.prd.clubPriceCus" disabled>{{showCase.prd.clubPriceCus | number}}</span>
-												    	</div>
-												    	<div class="col-sm-4">
-												      		<span class="form-control" id="finalClubPrice" name="finalClubPrice" min="0" ng-model="showCase.prd.finalClubPrice" disabled>{{showCase.prd.finalClubPrice | number}}</span>
-												    	</div>
 												  	</div>
 												  	<div class="form-group">
 												    	<div class="col-sm-4">
 												      		<input type="number" class="form-control" id="pr_web_13" name="pr_web_13" ng-model="showCase.prd.pr_web_13" ng-pattern="showCase.regexNumber" ng-change="showCase.onChangeFinalPriceWeb()" min="0">
 												      		<p ng-show="userForm.pr_web_13.$error.pattern  && !userForm.pr_web_13.$pristine" class="help-block">Can not enter special char</p>
-												    	</div>
-												    	<div class="col-sm-4">
-												      		<span class="form-control" id="webPriceCus" name="webPriceCus" min="0" ng-model="showCase.prd.webPriceCus" disabled>{{showCase.prd.webPriceCus | number}}</span>
-												    	</div>
-												    	<div class="col-sm-4">
-												      		<span class="form-control" id="finalWebPrice" name="finalWebPrice" min="0" ng-model="showCase.prd.finalWebPrice" disabled>{{showCase.prd.finalWebPrice | number}}</span>
 												    	</div>
 												  	</div>
 												</div>

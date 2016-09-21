@@ -1,10 +1,47 @@
 <style type="text/css">
-.select2-container {
-    width: 100%;
-}
-.fc-border-separate thead tr, .table thead tr {
-	font-size: 10px;
-}
+	.select2-container {
+	    width: 100%;
+	}
+	.fc-border-separate thead tr, .table thead tr {
+		font-size: 10px;
+	}
+
+	
+
+	.jarviswidget > div {
+		font-size: 11px;
+
+	}
+
+	.jarviswidget > div table tbody{
+		font-size: 12px;
+
+	}
+
+	label {
+	    	font-weight: bold;
+	    }
+
+	.inverseNumber {
+		 background-color: #f2f2f2;
+	        border: 0 none;
+	        margin-top: -14px;
+
+	}
+	.date {
+		margin-top: 14px;
+	}
+	input.label1{
+	        background-color: #fff !important;
+	        border: 0px;
+	    }
+
+	th.th-align-left {
+		text-align: left !important;
+	}
+	tr > th{
+	   background-color: #F4F4F4 !important; 
+	}
 </style>
 <section id="widget-grid" class="" ng-app="price_list_zone_detail" ng-controller="BindAngularDirectiveCtrl as showCase" ng-cloak>
     <div class="row">
@@ -72,7 +109,7 @@
 						                            	<div class="form-group">
 													    	<label class="control-label col-sm-6 text-left">P.L.F CURRENCY</label>
 													    	<div class="col-sm-6">
-													    		<input class="form-control" type="text" name="plf_curr_code" id="plf_curr_code" ng-model="showCase.user.plf_curr_code" disabled="disabled">
+													    		<input class="form-control label1" type="text" name="plf_curr_code" id="plf_curr_code" ng-model="showCase.user.plf_curr_code" disabled="disabled">
 												    		</div>
 											    		</div>
 											    		<div class="form-group" ng-class="{'has-error':userForm.plz_curr.$invalid && !userForm.plz_curr.$pristine}">
@@ -87,26 +124,38 @@
 											    		<div class="form-group" ng-class="{'has-error':userForm.plz_ex_rate_1.$invalid && !userForm.plz_ex_rate_1.$pristine}">
 													    	<label class="control-label col-sm-6 text-left">EX. RATE (<span data-ng-bind="showCase.user.plf_curr_code"></span>/<span data-ng-bind="showCase.user.plz_curr_code"></span>)</label>
 													    	<div class="col-sm-6">
-													    		<input class="form-control" type="text" name="plz_ex_rate_1" id="plz_ex_rate_1" ng-pattern="showCase.regexNumber"	 ng-model="showCase.user.plz_ex_rate_1" disabled>
+													    		<input class="form-control label1" type="text" name="plz_ex_rate_1" id="plz_ex_rate_1" 	 ng-model="showCase.user.plz_ex_rate_1" disabled>
 												    		</div>
 											    		</div>
 											    		<div class="form-group">
 											    			<div class="col-sm-6 col-sm-offset-6">
-													    		<label class="form-control" style="border:0px;" data-ng-bind="showCase.user.convert_plz_ex_rate_1"></label>
+
+
+													    		<label class="form-control inverseNumber" style="border:0px; font-weight:normal" data-ng-bind="showCase.user.convert_plz_ex_rate_1"></label>
 												    		</div>
 											    		</div>
+
+														<div class="form-group">
+															<div class="date">
+														    	<label class="control-label col-sm-6 text-left">CREATION DATE</label>
+														    	<div class="col-sm-6">
+														    		<input class="form-control label1" type="text" name="plz_date" id="plz_date" ng-model="showCase.user.plz_date" disabled>
+													    		</div>
+												    		</div>
+											    		</div>
+
 					                            	</div>
 					                            	<div class="col-md-6">
 					                            		<div class="form-group" ng-class="{'has-error':userForm.plf_cc_ex_rate.$invalid && !userForm.plf_cc_ex_rate.$pristine}">
 													    	<label class="control-label col-sm-6 text-left">EX.RATE (USD/<span data-ng-bind="showCase.user.plf_curr_code"></span>)</label>
 													    	<div class="col-sm-6">
-													    		<input class="form-control" type="number" name="plf_cc_ex_rate" id="plf_cc_ex_rate" ng-model="showCase.user.plf_cc_ex_rate" disabled>
+													    		<input class="form-control label1" type="text" name="plf_cc_ex_rate" id="plf_cc_ex_rate" ng-model="showCase.user.plf_cc_ex_rate" disabled>
 												    		</div>
 											    		</div>
 											    		<div class="form-group">
 													    	<label class="control-label col-sm-6 text-left">EX.RATE (USD/<span data-ng-bind="showCase.user.plz_curr_code"></span>)</label>
 													    	<div class="col-sm-6">
-													    		<input class="form-control" ng-pattern="showCase.regexNumber" type="number" name="cc_value" id="cc_value" ng-model="showCase.user.cc_value" disabled>
+													    		<input class="form-control label1" type="text" name="cc_value" id="cc_value" ng-model="showCase.user.cc_value" disabled>
 												    		</div>
 											    		</div>
 											    		<div class="form-group" ng-class="{'has-error':userForm.plz_ex_rate.$invalid && !userForm.plz_ex_rate.$pristine}">
@@ -118,29 +167,21 @@
 											    		</div>
 											    		<div class="form-group">
 											    			<div class="col-sm-6 col-sm-offset-6">
-													    		<label class="form-control" style="border:0px;" data-ng-bind="showCase.user.convert_plz_ex_rate"></label>
+													    		<label class="form-control inverseNumber" style="border:0px; font-weight:normal" data-ng-bind="showCase.user.convert_plz_ex_rate"></label>
 												    		</div>
+											    		</div>
+
+											    		<div class="form-group">
+											    			<div class="date">
+														    	<label class="control-label col-sm-6 text-left">LAST UPDATE </label>
+														    	<div class="col-sm-6">
+														    		<input class="form-control label1" type="text" name="plz_update" id="plz_update" ng-model="showCase.user.plz_update" disabled>
+													    		</div>
+													    	</div>
 											    		</div>
 					                            	</div>
 				                            	</div>
-				                            	<div class="row">
-				                            		<div class="col-sm-6">
-				                            			<div class="form-group">
-													    	<label class="control-label col-sm-6 text-left">CREATION DATE</label>
-													    	<div class="col-sm-6">
-													    		<input class="form-control" type="text" name="plz_date" id="plz_date" ng-model="showCase.user.plz_date" disabled>
-												    		</div>
-											    		</div>
-				                            		</div>
-				                            		<div class="col-sm-6">
-				                            			<div class="form-group">
-													    	<label class="control-label col-sm-6 text-left">LAST UPDATE </label>
-													    	<div class="col-sm-6">
-													    		<input class="form-control" type="text" name="plz_update" id="plz_update" ng-model="showCase.user.plz_update" disabled>
-												    		</div>
-											    		</div>
-				                            		</div>
-				                            	</div>
+				                            	
 				                            </div>
 				                            <div class="col-md-3">
 				                            	<div class="form-group" ng-class="{'has-error':userForm.plz_correction.$invalid && !userForm.plz_correction.$pristine}">
@@ -251,52 +292,54 @@
 	                                    <table id="mytable" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptions_detail" dt-columns="showCase.dtColumns_detail" dt-instance="showCase.dtInstance">
 	                                    	<thead>
 	                                    		<tr>
-	                                    			<th colspan="2" style="text-align:center;">COSTING</th>
-													<th colspan="2" style="text-align:center;">VERSION</th>
-													<th colspan="9"></th>
+	                                    			<th colspan="2" class="text-center">COSTING</th>
+
+													<th colspan="2" class="text-center">VERSION</th>
+
+													<th rowspan="2">WEIGHT</th>
+
+													<th colspan="2" class="text-center">FACTORY</th>
+
+													<th colspan="2" class="text-center">FACTORY</th>
+
+													<th rowspan="2">FREIGHT</th>
+
+													<th rowspan="2">TAXES</th>
+													<th rowspan="2">MARGIN</th>
+													<th rowspan="2">SELL CALC</th>
+
 													<th style="text-align:center;"><button type="button" id="butsubmit" class="btn btn-info" ng-click="showCase.resetAgentManual()">Reset</button></th>
-													<th colspan="2"></th>
+
+													<th rowspan="2">MARGIN APPLIED</th>
+
+													<th  rowspan="2">RECOMENDED PRICE - CALC</th>
+
 													<th style="text-align:center;"><button type="button" id="butsubmit" class="btn btn-info" ng-click="showCase.resetRecomendedManual()">Reset</button></th>
-													<th></th>
+
+													<th rowspan="2">AGENT MARGIN</th>
 	                                    		</tr>
 	                                    		<tr style="text-align:center;">
 	                                    			<th>CODE</th>
 													<th>DESCRIPTION</th>
+
+
 													<th>No.</th>
 													<th>DESCRIPTION</th>
+
 													<th>WEIGHT</th>
-													<th colspan="2" style="text-align:center;">FACTORY SELL PRICE</th>
-													<th colspan="2" style="text-align:center;">FACTORY SELL PRICE</th>
-													<th>FREIGHT</th>
-													<th>TAXES</th>
-													<th>MARGIN</th>
-													<th>SELL CALC</th>
-													<th style="text-align:center;">AGENT SELL PRICE</th>
-													<th>MARGIN APPLIED</th>
-													<th>RECOMENDED PRICE - CALC</th>
-													<th style="text-align:center;">RECOMENDED PRICE</th>
-													<th>AGENT MARGIN</th>
-	                                    		</tr>
-	                                    		<tr style="display:none;">
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                    <th></th>
-								                </tr>
+
+													<th>SELL PRICE</th>
+													<th>CURRENCY</th>
+
+													<th>SELL PRICE</th>
+													<th>CURRENCY</th>
+																									
+
+													<th style="border-right-width: 1px;">RECOMENDED PRICE</th>
+
+
+													
+	                                    		</tr>	                                    		
 	                                    	</thead>
 	                                    </table>
                                 	</div>
@@ -311,6 +354,7 @@
 </section>
 <script src="/includes/js/angular-route.min.js"></script>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/views/price_list_zone_detail.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>

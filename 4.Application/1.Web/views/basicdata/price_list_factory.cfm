@@ -12,10 +12,18 @@
         background-color: #fff !important;
         border: 0px;
     }
+
+    span.label1{
+        background-color: #fff !important;
+        border: 0px;
+    }
 	span.inverseNumber{
         background-color: #f2f2f2;
         border: 0 none;
         margin-top: -14px;
+    }
+    tr > th.th-align-left {
+        text-align: left !important;
     }
 </style>
 <section id="widget-grid" class="" ng-app='price.List.factory' ng-controller="BindAngularDirectiveCtrl as showCase">
@@ -86,7 +94,8 @@
 														<div class="col-md-6 col-xs-12 no-padding">
 															<label class="col-md-6 control-label text-left text-bold">Ex. Rate (USD/{{showCase.ftycurrency}})</label>
 															<div class="col-md-6">
-																<input class="form-control label1" readonly placeholder="" type="text" name="exRateUSDToFtyCurrency" id="exRateUSDToFtyCurrency" ng-model="showCase.formatNumber(showCase.currFtyCurrencyExRate.cc_value)">
+																
+																<span  class="form-control label1"  ng-bind="showCase.formatNumber(showCase.currFtyCurrencyExRate.cc_value)"></span>
 															</div>
 														</div>
 													</div>
@@ -102,9 +111,10 @@
 															</div>
 														</div>
 														<div class="col-md-6 col-xs-12 no-padding">
-															<label class="col-md-6 control-label text-left text-bold">Ex. Rate (USD/{{showCase.PListCurrencyCode}})</label>
+															<label class="col-md-6 control-label text-left text-bold">Ex. Rate {{showCase.exRateUSDWithPriceCurrencyLabel}}<!--- (USD/{{showCase.PListCurrencyCode}}) ---></label>
 															<div class="col-md-6">
-																<input type="text" class="form-control label1" ng-model="showCase.formatNumber(showCase.exRateUSDToPListCurrency)" readonly id="exRateUSDToPListCurrency" name="exRateUSDToPListCurrency">
+																
+																<span class="form-control label1" ng-bind="showCase.formatNumber(showCase.exRateUSDToPListCurrency)"></span>
 															</div>
 
 														</div>
@@ -112,7 +122,7 @@
 													</div>
 													<div class="form-group">
 														<div class="col-md-6 col-xs-12 no-padding">
-															<label class="col-md-6 control-label text-left text-bold">Ex. Rate {{showCase.exRaseWithPriceCurrency}}</label>
+															<label class="col-md-6 control-label text-left text-bold">Ex. Rate {{showCase.exRateWithPriceCurrencyLabel}}</label>
 															<div class="col-md-6">
 																 <input type="text" class="form-control label1" ng-model="showCase.exRatePListFtyToFtyCurrency" readonly>
 															</div>
@@ -316,20 +326,8 @@
                                                     <th>DATE</th>
                                                     <th>UPDATE</th>
                                                     <th style="width: 45px;"></th>
-                                                </tr>
-                                                <tr style="display:none;">
                                                     <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
+                                                </tr>                                               
                                             </thead>
                                         </table>
 									</div>
@@ -356,6 +354,7 @@
     </div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js?"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>
 <script src="/includes/js/angular-datatables.light-columnfilter.min.js"></script>

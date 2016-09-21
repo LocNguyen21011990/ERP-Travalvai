@@ -78,13 +78,16 @@ component output="false" displayname=""  {
 	function insertPLFDetail(event, prc, rc) {
 		// try {
 			var plf = EntityLoad("price_list_factory", {id_plf: rc.id_plf}, true);
-			var plzs = entityLoad("price_list_zone",{price_list_factory:plf});
+			var plzs = EntityLoad("price_list_zone",{price_list_factory:plf});
+
 			for(itemcv in rc.arr_cv) {
 				costing_version = entityLoad("costing_versions", {id_cost_version: itemcv}, true);
 				costing = costing_version.getCosting();
 
-				var factory = userService.getLoggedInUser().getFactory();
+				var user = userService.getLoggedInUser();
+				var factory = user.getFactory();
 				var checkCV = entityLoad("price_list_factory_detail", {costing: costing, costing_version: costing_version, price_list_factory: plf},true);
+
 				if(isnull(checkCV)) {
 					var plfDetail = EntityNew("price_list_factory_detail");
 					plfDetail.setcosting_version(costing_version);
@@ -102,7 +105,8 @@ component output="false" displayname=""  {
 
 					plfDetail.setfactory(factory);
 					plfDetail.setcurrency(plf.getCurrency());
-					entitySave(plfDetail);
+					writeDump(plfDetail.getprice_list_factory());
+					plfdService.Save(plfDetail);
 
 					for(plz in plzs){
 						var  plzd = entityNew("price_list_zone_details");
@@ -134,6 +138,8 @@ component output="false" displayname=""  {
 						plzd.setPlzd_pvpr_7(plzd_pvpr_7);
 						plzd.setplzd_PVPR_8(plzd_pvpr_8);
 						plzd.setPlzd_margin_2(plzd_margin_2);
+						plzd.setCreated(now());
+						plzd.setuser_created(user);
 						PLZ_detailService.save(plzd);
 					}
 				}

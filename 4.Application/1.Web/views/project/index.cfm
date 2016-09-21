@@ -1,4 +1,5 @@
 <cfoutput>
+	
  	<section id="widget-grid" class="" ng-app="project.list" ng-controller="BindAngularDirectiveCtrl as showCase">
 		<div class="row">
 			<article class="col-sm-12 col-md-12 col-lg-12">
@@ -163,7 +164,8 @@
 							<div class="table-responsive">
 								<table id="datatable_fixed_column" class="table table-striped table-bordered" width="100%">
 							        <thead>
-										<tr>
+
+									<tr>
 											<th class="hasinput" style="width:5%;">
 												<input type="text" class="form-control" placeholder="Filter Project" />
 											</th>
@@ -223,18 +225,31 @@
 												</div>
 											</th>
 										</tr>
-							            <tr>
-						                    <th>PROJECT</th>
-											<th>DESCRIPTION</th>
-											<th>ID CUS</th>
-											<th>CUSTOMER NAME</th>
-											<th>AGENT</th>
-											<th>ZONE</th>
-											<th>DATE</th>
-											<th>STATUS</th>
-											<th></th>
-											<th>ACTIONS</th>
+									<tr>
+						                    <th rowspan="2">PROJECT</th>
+											<th rowspan="2">DESCRIPTION</th>
+											<th colspan="2" class="text-center">CUSTOMER</th>
+											
+											<th rowspan="2">AGENT</th>
+											<th rowspan="2">ZONE</th>
+											<th rowspan="2">DATE</th>
+											<th rowspan="2">STATUS</th>
+											<th rowspan="2"></th>
+											<th rowspan="2">ACTIONS</th>
 							            </tr>
+
+										<tr>
+						                   
+											
+											<th>ID</th>
+											<th style="border-right-width: 1px;">NAME</th>
+
+							            </tr>
+										
+
+
+										
+							            
 							        </thead>
 			        				<tbody>
 										<cfloop array="#prc.projects#" index="pj">
@@ -242,7 +257,7 @@
 												<input type='hidden' name="id_Project" id="id_Project" value="#pj.id_project#">
 												<td>PJ-#pj.id_display#</td>
 												<td>#pj.pj_description#</td>
-												<td>#pj.id_customer#</td>
+												<td class="text-right">#pj.id_customer#</td>
 												<td>#pj.cs_name#</td>
 												<td>#pj.agent#</td>
 												<td>#pj.zone#</td>
@@ -421,6 +436,8 @@
 
 <style type="text/css">
 
+	
+	
 	.dataTables_filter{
 		display: none;
 	}

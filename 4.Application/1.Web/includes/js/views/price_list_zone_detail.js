@@ -24,24 +24,29 @@
     	var originalPLZD   = angular.copy(vm.plz_dets);
 
      	vm.dtColumns_detail  = [
-     		DTColumnBuilder.newColumn('COST_CODE').withTitle('COST CODE'),
+     		DTColumnBuilder.newColumn('COST_CODE').withTitle('CODE'),
 			DTColumnBuilder.newColumn('CD_DESCRIPTION').withTitle('DESCRIPTION'),
-     		DTColumnBuilder.newColumn('CV_VERSION').withTitle('VERSION').withClass("text-center"),
-			DTColumnBuilder.newColumn('CVD_DESCRIPTION').withTitle('VERS. DESCRIPTION'),
-			DTColumnBuilder.newColumn('PLZD_WEIGHT').withTitle('WEIGHT').withClass("text-right"),
-			DTColumnBuilder.newColumn('PLFD_FTY_SELL_3').withTitle('FTY SELL PRICE').renderWith(formatNumber).withClass("text-right"),
+     		DTColumnBuilder.newColumn('CV_VERSION').withTitle('No.').withClass("text-center"),
+			DTColumnBuilder.newColumn('CVD_DESCRIPTION').withTitle('DESCRIPTION'),
+			DTColumnBuilder.newColumn('PLZD_WEIGHT').withTitle('WEIGHT').withClass("text-right th-align-left"),
+
+			DTColumnBuilder.newColumn('PLFD_FTY_SELL_3').withTitle('SELL PRICE').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLF_CURR_CODE').withTitle('CURRENCY'),
-			DTColumnBuilder.newColumn('PLZD_FTY_SELL_4').withTitle('FTY SELL PRICE').renderWith(formatNumber).withClass("text-right"),
+
+
+			DTColumnBuilder.newColumn('PLZD_FTY_SELL_4').withTitle('SELL PRICE').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLZ_CURR_CODE').withTitle('CURRENCY'),
-			DTColumnBuilder.newColumn('PLZD_FREIGHT').withTitle('FREIGHT').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_TAXES').withTitle('TAXES').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_MARGIN').withTitle('MARGIN').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_ZONE_SELL_5').withTitle('SELL CALC').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_ZONE_SELL_6').withTitle('AGENT SELL PRICE').renderWith(plzZoneSell6Edit).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_MARGIN_1').withTitle('MARGIN APPLIED').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_PVPR_7').withTitle('RECOMENDED PRICE - CALC').renderWith(formatNumber).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_PVPR_8').withTitle('RECOMENDED PRICE').renderWith(plzPVPR8Edit).withClass("text-right"),
-			DTColumnBuilder.newColumn('PLZD_MARGIN_2').withTitle('AGENT MARGIN').renderWith(formatNumber).withClass("text-right")
+
+
+			DTColumnBuilder.newColumn('PLZD_FREIGHT').withTitle('FREIGHT').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_TAXES').withTitle('TAXES').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_MARGIN').withTitle('MARGIN').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_ZONE_SELL_5').withTitle('SELL CALC').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_ZONE_SELL_6').withTitle('AGENT SELL PRICE').renderWith(plzZoneSell6Edit).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_MARGIN_1').withTitle('MARGIN APPLIED').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_PVPR_7').withTitle('RECOMENDED PRICE - CALC').renderWith(formatNumber).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_PVPR_8').withTitle('RECOMENDED PRICE').renderWith(plzPVPR8Edit).withClass("text-right th-align-left"),
+			DTColumnBuilder.newColumn('PLZD_MARGIN_2').withTitle('AGENT MARGIN').renderWith(formatNumber).withClass("text-right th-align-left")
       	];
 
       	function formatNumber(data, type, full, meta){
@@ -195,7 +200,8 @@
       	vm.dtOptions_detail  = DTOptionsBuilder.fromSource('/index.cfm/price_list_zone_detail/getPLZ_details?id_plz=' + getQueryVariable('id'))
           	.withPaginationType('full_numbers')
           	.withLightColumnFilter(sumColumnFilter)
-          	.withOption('createdRow', createdRow);
+          	.withOption('createdRow', createdRow)
+          	.withOption('select', { style: 'single' });
 
 
       	$http.get("/index.cfm/basicdata/getlanguage").success(function(dataResponse){
@@ -326,6 +332,7 @@
 
        	function refreshEditPLZD(){
        		vm.plz_dets = originalPLZD;
+       		vm.plzdEditData = [];
        		$('#id_plz_det').val(0);
        		vm.dtInstance.reloadData();
        	}

@@ -83,12 +83,10 @@
       if(vm.user.ex_rate === undefined || vm.user.ex_rate == 0 || vm.user.ex_rate == "") {
         vm.user.convertplz_ex_rate = "";
         return "";
-      }
-      else{
+      }else{
         vm.user.convertplz_ex_rate = roundDecimalPlaces(1/vm.user.ex_rate,2);
       }
     }
-
 
     function calculateExRate(){
       if(vm.currency_convert.cc_value === undefined || vm.user.plfEx_Rate === undefined) {
@@ -126,8 +124,7 @@
       }
     }
 
-
-      vm.arrPlist = [];
+    vm.arrPlist = [];
 
     function changeSourceSeasonAddNew() {
       $.ajax({
@@ -204,47 +201,40 @@
                       }
                     })
                   .withPaginationType('full_numbers')
-                  .withOption('createdRow', createdRow);
+                  .withOption('createdRow', createdRow)
+                  .withOption('select', { style: 'single' });
 
      vm.dtColumns  = [
           DTColumnBuilder.newColumn('CODE').withTitle('CODE'),
           DTColumnBuilder.newColumn('DESCRIPTION').withTitle('DESCRIPTION'),
-          DTColumnBuilder.newColumn('SEASON').withTitle('SEASON'),
-          DTColumnBuilder.newColumn('PLF_CODE').withTitle('PRICE LIST FACTORY').withClass("needcolspan2"),
-          DTColumnBuilder.newColumn('PLF_CURR').withTitle(''),
+          DTColumnBuilder.newColumn('SEASON').withTitle('SEASON').withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('PLF_CODE').withTitle('CODE').withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('PLF_CURR').withTitle('CURRENCY'),
           DTColumnBuilder.newColumn('PLCURRENCY').withTitle('P.L. CURRENCY'),
-          DTColumnBuilder.newColumn('EX_RATE').withTitle('EX. RATE').renderWith(formatNumber).withClass("text-right"),
+          DTColumnBuilder.newColumn('EX_RATE').withTitle('EX. RATE').renderWith(formatNumber).withClass("text-right th-text-left"),
           DTColumnBuilder.newColumn('DATE').withTitle('DATE'),
           DTColumnBuilder.newColumn('UPDATE').withTitle('UPDATE'),
-          DTColumnBuilder.newColumn('CORRECTION').withTitle('CORRECTION').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('COMMISSION').withTitle('COMMISSION').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('FREIGHT').withTitle('FREIGHT').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('TAXES').withTitle('TAXES').renderWith(formatNumber).withClass("text-right"),
-          DTColumnBuilder.newColumn('MARGIN').withTitle('MARGIN').renderWith(formatNumber).withClass("text-right"),
+          DTColumnBuilder.newColumn('CORRECTION').withTitle('CORRECTION').renderWith(formatNumber).withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('COMMISSION').withTitle('COMMISSION').renderWith(formatNumber).withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('FREIGHT').withTitle('FREIGHT').renderWith(formatNumber).withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('TAXES').withTitle('TAXES').renderWith(formatNumber).withClass("text-right  th-text-left"),
+          DTColumnBuilder.newColumn('MARGIN').withTitle('MARGIN').renderWith(formatNumber).withClass("text-right  th-text-left"),
           DTColumnBuilder.newColumn('LANGUAGE').withTitle('LANGUAGE'),
-          DTColumnBuilder.newColumn(null).renderWith(actionsHtml).withOption('width',"2%")
+          DTColumnBuilder.newColumn('').withTitle('DETAIL').withClass("text-center").renderWith(renderLinkDetail).notSortable(),
+          DTColumnBuilder.newColumn(null).withTitle('ACTIONS').renderWith(actionsHtml).withOption('width',"2%").notSortable()
         ];
 
-        function formatNumber(data, type, full, meta){
-          if(data < 1) return roundDecimalPlaces(data,2);
-          return $filter("number")(roundDecimalPlaces(data, 2),2);
-        }
+      function formatNumber(data, type, full, meta){
+        if(data < 1) return roundDecimalPlaces(data,2);
+        return $filter("number")(roundDecimalPlaces(data, 2),2);
+      }
 
-      (function () {
-        $(document).ready(function() {
-          $('#datatable_fixed_column_1').find('th').each(function() {
-            if($(this).is(':empty')) {
-              $(this).remove();
-            }
-            if($(this).hasClass('need2col')) {
-              $(this).attr("colspan", "2");
-            }
-            if($(this).hasClass('need3col')) {
-              $(this).attr("colspan", "3");
-            }
-          });
-        })
-      })();
+      function renderLinkDetail(data, type, full, meta){
+        return '<a class="txt-color-green btngotoplfdetail" title="Go to price list factory detail" ng-click="showCase.clickItem(' + full.ID + ')">' +
+          '<i class="ace-icon bigger-130 fa fa-sign-out"></i></a>';
+      }
+
+
 
       //remove action without factory admin
       if( (vm.userInfo.TYPEUSER == 3) || (vm.userInfo.TYPEUSER == 4)){

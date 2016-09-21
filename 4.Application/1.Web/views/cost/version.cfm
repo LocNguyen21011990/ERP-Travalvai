@@ -38,7 +38,7 @@
 						<div class="col-md-12">
 							<legend>General</legend>
 							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">									
+								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class ="col-md-9 col-sm-9 col-xs-12" style="border: thin dotted rgb(212, 212, 212); padding:15px;">
                                         <table class="table no-border text-left">
                                             <tbody>
@@ -124,7 +124,7 @@
                                 <div class="form-group" ng-class="{'has-error':userForm.cv_version.$invalid && !userForm.cv_version.$pristine}">
                                     <label class="col-md-3 control-label text-left">Version No.</label>
                                     <div class="col-md-5">
-                                        <input class="form-control" placeholder="" type="text" name="cv_version" id="cv_version" ng-model="showCase.user.cv_version" ng-pattern="showCase.regex" ng-readonly="showCase.isReadonly" required>
+                                        <input class="form-control" placeholder="" type="text" name="cv_version" id="cv_version" ng-model="showCase.user.cv_version" ng-pattern="showCase.regex" required>
                                         <p ng-show="userForm.cv_version.$error.pattern  && !userForm.cv_version.$pristine" class="help-block">please, enter number format.</p>
                                     </div>
                                 </div>
@@ -212,6 +212,7 @@
 	</div>
 </section>
 <script src="/includes/js/jquery.dataTables.min.js"></script>
+<script src="/includes/js/dataTables.select.min.js"></script>
 <script src="/includes/js/angular-datatables.min.js"></script>
 <script src="/includes/js/dataTables.lightColumnFilter.min.js"></script>
 <script src="/includes/js/angular-datatables.light-columnfilter.min.js"></script>
