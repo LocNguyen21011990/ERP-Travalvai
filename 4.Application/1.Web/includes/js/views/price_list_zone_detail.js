@@ -29,15 +29,10 @@
      		DTColumnBuilder.newColumn('CV_VERSION').withTitle('No.').withClass("text-center"),
 			DTColumnBuilder.newColumn('CVD_DESCRIPTION').withTitle('DESCRIPTION'),
 			DTColumnBuilder.newColumn('PLZD_WEIGHT').withTitle('WEIGHT').withClass("text-right th-align-left"),
-
 			DTColumnBuilder.newColumn('PLFD_FTY_SELL_3').withTitle('SELL PRICE').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLF_CURR_CODE').withTitle('CURRENCY'),
-
-
 			DTColumnBuilder.newColumn('PLZD_FTY_SELL_4').withTitle('SELL PRICE').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLZ_CURR_CODE').withTitle('CURRENCY'),
-
-
 			DTColumnBuilder.newColumn('PLZD_FREIGHT').withTitle('FREIGHT').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLZD_TAXES').withTitle('TAXES').renderWith(formatNumber).withClass("text-right th-align-left"),
 			DTColumnBuilder.newColumn('PLZD_MARGIN').withTitle('MARGIN').renderWith(formatNumber).withClass("text-right th-align-left"),
@@ -59,21 +54,18 @@
         	return $filter("number")(roundDecimalPlaces(data, places),places);
         }
 
-
-
-
         function plzZoneSell6Edit(data, type, full, meta){
         	var strStyle = '';
       		if(full.PLZD_ZONE_SELL_5 < full.PLZD_ZONE_SELL_6) {
       			strStyle = 'style="color: red;"';
       		}
-        	return '<span '+ strStyle +'ng-hide="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.enableEditing('+meta.row+')">' + $filter('number')(data, 2) + '</span>' +
-  					'<input ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-enter="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)" autofocus ng-model="showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6"/>' +
-      				'<br/><span class="txt-color-green btnedit" title="Edit" ng-show="!(showCase.editing && showCase.metadata == '+meta.row+')" ng-click="showCase.enableEditing('+meta.row+')"><i class="ace-icon bigger-130 fa fa-pencil"></i></span>' +
-      				'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)">' +
+        	return '<span '+ strStyle +'ng-hide="showCase.editing && showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.enableEditing('+meta.row+',true)">' + $filter('number')(data, 2) + '</span>' +
+  					'<input ng-show="showCase.editing && showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-enter="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)" autofocus ng-model="showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6"/>' +
+      				'<br/><span class="txt-color-green btnedit" title="Edit" ng-show="!(showCase.editing && showCase.isSell6 && showCase.metadata == '+meta.row+')" ng-click="showCase.enableEditing('+meta.row+',true)"><i class="ace-icon bigger-130 fa fa-pencil"></i></span>' +
+      				'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)">' +
 					'   <i class="ace-icon bigger-130 fa fa-floppy-o"></i>' +
 					'</span>'+
-					'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.refreshEdit()">' +
+					'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.refreshEdit()">' +
 					'   <i class="ace-icon bigger-130 fa fa-close"></i>' +
 					'</span>';
         }
@@ -83,25 +75,27 @@
       		if(full.PLZD_PVPR_7 < full.PLZD_PVPR_8) {
       			strStyle = 'style="color: red;"';
       		}
-        	return '<span '+ strStyle +'ng-hide="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.enableEditing('+meta.row+')">' + $filter('number')(data, 2) + '</span>' +
-  					'<input ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-enter="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)" autofocus ng-model="showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8"/>' +
-      				'<br/><span class="txt-color-green btnedit" title="Edit" ng-show="!(showCase.editing && showCase.metadata == '+meta.row+')" ng-click="showCase.enableEditing('+meta.row+')"><i class="ace-icon bigger-130 fa fa-pencil"></i></span>' +
-      				'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)">' +
+        	return '<span '+ strStyle +'ng-hide="showCase.editing && !showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.enableEditing('+meta.row+',false)">' + $filter('number')(data, 2) + '</span>' +
+  					'<input ng-show="showCase.editing  && !showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-enter="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)" autofocus ng-model="showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8"/>' +
+      				'<br/><span class="txt-color-green btnedit" title="Edit" ng-show="!(showCase.editing  && !showCase.isSell6 && showCase.metadata == '+meta.row+')" ng-click="showCase.enableEditing('+meta.row+',false)"><i class="ace-icon bigger-130 fa fa-pencil"></i></span>' +
+      				'<span class="txt-color-red btnSave" ng-show="showCase.editing  && !showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.UpdatePLZD(showCase.plzdEditData['+meta.row+'].ID,showCase.plzdEditData['+meta.row+'].PLZD_ZONE_SELL_6,showCase.plzdEditData['+meta.row+'].PLZD_PVPR_8)">' +
 					'   <i class="ace-icon bigger-130 fa fa-floppy-o"></i>' +
 					'</span>'+
-					'<span class="txt-color-red btnSave" ng-show="showCase.editing && showCase.metadata == '+meta.row+'" ng-click="showCase.refreshEdit()">' +
+					'<span class="txt-color-red btnSave" ng-show="showCase.editing  && !showCase.isSell6 && showCase.metadata == '+meta.row+'" ng-click="showCase.refreshEdit()">' +
 					'   <i class="ace-icon bigger-130 fa fa-close"></i>' +
 					'</span>';
         }
 
-        function enableEditing(metarow){
+        function enableEditing(metarow, isSell6){
         	vm.editing = true;
         	vm.metadata = metarow;
+        	vm.isSell6 = isSell6;
         }
 
         function refreshEdit(){
         	vm.editing = true;
         	vm.metadata = -1;
+        	vm.isSell6 = true;
         }
 
         $("#plz_ex_rate").keyup(function(){

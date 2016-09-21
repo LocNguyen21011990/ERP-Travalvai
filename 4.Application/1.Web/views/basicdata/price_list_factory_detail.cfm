@@ -38,7 +38,7 @@
                         		<div class="row factory-detail">
 									<div class ="col-md-3 col-sm-3 col-xs-12">
 										<div class="text-left" style="display: block;">
-											<span style="font-weight:bolder;">PR.LST.CODE: </span>
+											<span style="font-weight:bolder;">PR.LST. CODE: </span>
 											<span data-ng-bind="::showCase.user.CODE"></span>
 										</div>
 								    	<div class="text-left" style="display: block;">
@@ -65,14 +65,14 @@
 								      		<span data-ng-bind="::showCase.user.CURRPL"></span>
 								    	</div>
 								    	<div class="col-md-12 col-sm-12 col-xs-12 text-left">
-								    		
-												 <span style="font-weight:bolder;">	EX. RATE (<span data-ng-bind="showCase.user.FTYCURRENCY"> </span>/<span data-ng-bind="showCase.user.CURRPL"></span>)</span>: 
+
+												 <span style="font-weight:bolder;">	EX. RATE (<span data-ng-bind="showCase.user.FTYCURRENCY"> </span>/<span data-ng-bind="showCase.user.CURRPL"></span>)</span>:
 													<span data-ng-bind="showCase.user.calcuExRate"></span></br>
 
-									      			<span style="font-weight:bolder; color:#fff">	
+									      			<span style="font-weight:bolder; color:#fff">
 													  EX. RATE (<span data-ng-bind="showCase.user.FTYCURRENCY"> </span>/<span data-ng-bind="showCase.user.CURRPL"></span>):
-													</span> 
-													<span style="background-color:#f2f2f2" data-ng-bind="showCase.user.devidedCalcuExRate"></span>												
+													</span>
+													<span style="background-color:#f2f2f2" data-ng-bind="showCase.user.devidedCalcuExRate"></span>
 								    	</div>
 									</div>
 									<div class ="col-md-3 col-sm-3 col-xs-12">
@@ -86,13 +86,13 @@
 								    	</div>
 								    	<div class="col-md-12 col-sm-12 col-xs-12 text-left">
 
-											<span style="font-weight:bolder;">	MANUAL EX. RATE</span>: 
+											<span style="font-weight:bolder;">	MANUAL EX. RATE</span>:
 													<span data-ng-bind="showCase.user.EX_RATE"></span></br>
 
-									      			<span style="font-weight:bolder; color:#fff">	
+									      			<span style="font-weight:bolder; color:#fff">
 													  MANUAL EX. RATE:
-													</span> 
-													<span style="background-color:#f2f2f2" data-ng-bind="showCase.user.devidedExRate"></span>									    		
+													</span>
+													<span style="background-color:#f2f2f2" data-ng-bind="showCase.user.devidedExRate"></span>
 								    	</div>
 									</div>
 									<div class ="col-md-3 col-sm-3 col-xs-12">
@@ -200,7 +200,7 @@
                     <form class="form-horizontal" name="userForm1" ng-submit="showCase.submitForm()" novalidate>
                         <div class="form-group" ng-class="{'has-error' : userForm1.season.$invalid && !userForm1.season.$pristine}">
                             <div class="col-md-6">
-                            	<label class="control-label text-left">Source Season</label>
+                            	<label class="control-label text-left"><strong>Source Season</strong></label>
                             	<select ui-select2 id="oseason" name="oseason" ng-model="showCase.user.oseason" data-placeholder="Choose" ng-required="true">
 								    <option ng-repeat="lang in showCase.old_seasons" value="{{lang.ID}}">{{lang.SEASON}}</option>
 								</select>
@@ -208,7 +208,7 @@
                             </div>
 
                             <div class="col-md-6">
-                            	<label class="control-label text-left">Source Code</label>
+                            	<label class="control-label text-left"><strong>Source Code</strong></label>
                             	<select ui-select2 id="oCode" name="oCode" ng-model="showCase.user.oCode" data-placeholder="Choose" ng-required="true" multiple>
                             		<option value="all">All codes</option>
 								    <option ng-repeat="lang in showCase.oCodes" value="{{lang.ID_COST}}">{{lang.COST_CODE}}</option>

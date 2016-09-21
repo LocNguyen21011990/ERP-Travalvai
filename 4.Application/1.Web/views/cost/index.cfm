@@ -22,13 +22,13 @@
         font-weight: bold;
     }
     tr > th{
-       background-color: #F4F4F4 !important; 
+       background-color: #F4F4F4 !important;
     }
 
     tr > th.th-align-left {
         text-align: left !important;
     }
-    
+
 </style>
 <section id="widget-grid" class="" ng-app="costing.main" ng-controller="BindAngularDirectiveCtrl as showCase">
 	<div class="row">
@@ -185,7 +185,7 @@
                                             <div class="fcontent">
                                                 <form class="form-horizontal" name="userForm1" ng-submit="showCase.submitForm()" novalidate>
                                                     <div class="form-group">
-                                                        <label class="col-md-2 control-label text-left">Source:</label>
+                                                        <label class="col-md-2 control-label text-left"><strong>Source:</strong></label>
                                                         <div class="col-md-2" ng-class="{'has-error' : userForm1.oseason.$invalid && !userForm1.oseason.$pristine}">
                                                             <select ui-select2 id="oseason" name='oseason' ng-model="showCase.user.oseason" data-placeholder="Choose Season" ng-required="true" ng-change="showCase.onChangeSourceSeason();">
                                                                 <option value="">Choose...</option>
@@ -194,7 +194,6 @@
                                                             <p ng-show="userForm1.oseason.$invalid && !userForm1.oseason.$pristine" class="help-block">Required</p>
                                                         </div>
                                                         <input class="col-md-1" type="radio" name="radiobutton" ng-model="showCase.kindOfCopy.type" id="type_product" value="type_product" ng-change="showCase.typeProductAction();">
-
                                                         <div class="col-md-3" ng-class="{'has-error' : userForm1.productType.$invalid && !userForm1.productType.$pristine}">
                                                              <select ui-select2 id="productType" name='productType' ng-model="showCase.user.productType" data-placeholder="Choose Season" ng-disabled="showCase.oProductTypeIsDisable" ng-required="showCase.isRequiredPrdType">
                                                                 <option value="">Type of Product</option>
@@ -216,7 +215,7 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="col-md-2 control-label text-left">Destination:</label>
+                                                        <label class="col-md-2 control-label text-left"><strong>Destination:</strong></label>
                                                         <div class="col-md-2" ng-class="{'has-error' : userForm1.newSeason.$invalid && !userForm1.newSeason.$pristine}">
                                                             <select  ui-select2 id="newSeason" name="newSeason" ng-model="showCase.user.newSeason" data-placeholder="Choose" ng-required="true">
                                                                 <option value="">Choose...</option>
@@ -278,8 +277,8 @@
                                                 <th rowspan="2" >VER(s)</th>
                                                 <th rowspan="2" >DETAIL</th>
                                                 <th rowspan="2" >EDIT/ DELETE</th>
-                                            </tr>                                            
-                                            <tr>                                                
+                                            </tr>
+                                            <tr>
                                                 <th>CODE</th>
                                                 <th>DESCRIPTION</th>
                                                 <th>ID</th>
@@ -307,8 +306,8 @@
                                                 <th rowspan="2">VER(s)</th>
                                                 <th rowspan="2">SKETCH</th>
                                                 <th rowspan="2"></th>
-                                            </tr>                                            
-                                            <tr>                                                
+                                            </tr>
+                                            <tr>
                                                 <th>CODE</th>
                                                 <th>DESCRIPTION</th>
                                                 <th>ID</th>

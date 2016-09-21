@@ -194,7 +194,16 @@ component output="false" displayname=""  {
 
 	function resetPrice(event, prc, rc) {
 		try {
-			QueryExecute("update price_list_factory_detail set plfd_fty_sell_3 = plfd_fty_sell_2 where id_plf = :idPlf", {idPlf: rc.id_plf});
+			var plf = entityload("price_list_factory",{id_plf:rc.id_plf},true);
+			var plfds = entityload("price_list_factory_detail",{price_list_factory:plf});
+			for(item in plfds){
+				item.setPlfd_fty_sell_3(item.getplfd_fty_sell_2());
+				var plzds = entityLoad("price_list_zone_details",{price_list_factory_detail: item});
+				for(plzd in plzds){
+					PLZ_detailService.updatePriceListZoneDetail(plzd);
+				}
+				plfdService.save(item);
+			}
 			event.renderData(type="json",data={ 'success' : true , 'message' : 'Reset all Prices successfully!'});
 		}
 		catch(any e) {

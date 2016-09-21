@@ -94,7 +94,7 @@
 														<div class="col-md-6 col-xs-12 no-padding">
 															<label class="col-md-6 control-label text-left text-bold">Ex. Rate (USD/{{showCase.ftycurrency}})</label>
 															<div class="col-md-6">
-																
+
 																<span  class="form-control label1"  ng-bind="showCase.formatNumber(showCase.currFtyCurrencyExRate.cc_value)"></span>
 															</div>
 														</div>
@@ -113,7 +113,7 @@
 														<div class="col-md-6 col-xs-12 no-padding">
 															<label class="col-md-6 control-label text-left text-bold">Ex. Rate {{showCase.exRateUSDWithPriceCurrencyLabel}}<!--- (USD/{{showCase.PListCurrencyCode}}) ---></label>
 															<div class="col-md-6">
-																
+
 																<span class="form-control label1" ng-bind="showCase.formatNumber(showCase.exRateUSDToPListCurrency)"></span>
 															</div>
 
@@ -203,7 +203,7 @@
 												<form class="form-horizontal" name="copyForm" ng-submit="showCase.submitForm()" novalidate>
                                                     <div class="col-md-4">
 														<div class="form-group" ng-class="{'has-error' : copyForm.sourceseason.$invalid && !copyForm.sourceseason.$pristine}">
-															<label class="col-md-4 control-label text-left">Source</label>
+															<label class="col-md-4 control-label text-left"><strong>Source</strong></label>
 															<div class="col-md-8">
 																<select ui-select2 id="sourceseason" name="sourceseason" ng-model="showCase.user.sourceseason" data-placeholder="Choose"  ng-change="showCase.changeSourceSeason()" required>
 																	<option value="">Choose...</option>
@@ -213,7 +213,7 @@
 															</div>
 	                                                    </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                     	<div class="form-group" ng-class="{'has-error' : copyForm.sourcezone.$invalid && !copyForm.sourcezone.$pristine}">
 	                                                        <div class="col-md-12">
 	                                                        	<select ng-disabled="showCase.isDisableSourceZone" ui-select2 id="sourcezone" name="sourcezone" ng-model="showCase.user.sourcezone" data-placeholder="Choose" ng-required="true" ng-change="showCase.changeSourceZone()">
@@ -223,7 +223,7 @@
 	                                                        </div>
 	                                                    </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                     	<div class="form-group" ng-class="{'has-error' : copyForm.sourceplf.$invalid && !copyForm.sourceplf.$pristine}">
 	                                                        <div class="col-md-12">
 	                                                        	<select ng-disabled="showCase.isDisableSourcePList" ui-select2 id="sourceplf" name="sourceplf" ng-model="showCase.user.sourceplf" data-placeholder="Choose" ng-required ng-change="showCase.changeSourcePList()">
@@ -234,17 +234,17 @@
 	                                                    </div>
                                                     </div>
                                                     <div class="col-md-2">&nbsp;</div>
-                                                    <div class="col-md-2"><label class="control-label pull-right">Currency</label></div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-2"><label class="control-label pull-right"><strong>Currency</strong></label></div>
+                                                    <div class="col-md-3">
                                                     	<div class="form-group">
-	                                                    	<div class="col-md-6">
+	                                                    	<div class="col-md-8">
 	                                                    		<input class="form-control pull-left" type="text" ng-disabled="true" ng-model="showCase.user.sourcePriceListCurrency" name="sourcePriceListCurrency"/>
 	                                                    	</div>
 	                                                    </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                     	<div class="form-group">
-	                                                    	<label class="col-md-6 control-label text-left">Manual Ex. Rate</label>
+	                                                    	<label class="col-md-6 control-label text-left"><strong>Manual Ex. Rate</strong></label>
 	                                                    	<div class="col-md-6">
 	                                                    		<input class="form-control" type="text" ng-disabled="true" ng-model="showCase.user.sourcePriceListExRate" name="sourcePriceListExRate"/>
 	                                                    	</div>
@@ -252,7 +252,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                     	<div class="form-group" ng-class="{'has-error' : copyForm.destinationseason.$invalid && !copyForm.destinationseason.$pristine}">
-                                                        	<label class="col-md-4 control-label text-left">Destination</label>
+                                                        	<label class="col-md-4 control-label text-left"><strong>Destination</strong></label>
 	                                                        <div class="col-md-8">
 	                                                        	<select  ui-select2 id="destinationseason" name="destinationseason" ng-model="showCase.user.destinationseason" data-placeholder="Choose" ng-required="true">
 	                                                        		<option value="">Choose...</option>
@@ -262,7 +262,7 @@
 	                                                        </div>
 	                                                    </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                     	<div class="form-group">
 	                                                        <div class="col-md-12">
 	                                                        	<input type="hidden" id="destinationzone" name="destinationzone" ng-model="showCase.user.destinationzone"/>
@@ -270,7 +270,7 @@
 	                                                        </div>
 	                                                    </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                     	<div class="form-group">
 	                                                        <div class="col-md-12">
 	                                                            <input ng-readonly="showCase.isDisableDestinationPList" type="text" name="text_destinationplf" id="text_destinationplf" class="form-control">
@@ -280,7 +280,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                     	<div class="form-group">
-	                                                    	<label class="col-md-4 control-label ">Description</label>
+	                                                    	<label class="col-md-4 control-label "><strong>Description</strong></label>
 	                                                    	<div class="col-md-8">
 	                                                    		<input class="form-control" name="priceListDescription" type="text" ng-model="showCase.user.priceListDescription"/>
 	                                                    	</div>
@@ -303,7 +303,7 @@
 							</div>
 							<div class="row width-table-content" style="width:100%;">
 								<fieldset>
-									<div class="col-md-7"><legend class="fcollapsible">Price List Factory</legend></div>
+									<legend class="fcollapsible col-md-7">Price List Factory</legend>
 									<div class="btn col-md-2 col-xs-12 margin-bottom-10 bg-color-blueDark txt-color-white" id="btnCopyData" ng-click="showCase.showCopyData()" ng-show="{{isShowCreateBtn}}">
                                         CREATE BY COPY
                                     </div>
@@ -327,7 +327,7 @@
                                                     <th>UPDATE</th>
                                                     <th style="width: 45px;"></th>
                                                     <th></th>
-                                                </tr>                                               
+                                                </tr>
                                             </thead>
                                         </table>
 									</div>

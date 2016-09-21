@@ -206,7 +206,15 @@
                 '<i class="ace-icon bigger-130 fa fa-sign-out"></i></span>';
         }
 		function priceDisplay(data, type, full, meta) {
-			return '<span style="minheight:50px;">' +$filter("number")(data.sell_4,2)+'</span><hr><span style="minheight:50px;">' + $filter("number")(data.sell_6,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_8,2) + '</span>';
+			 if( vm.userInfo.TYPEUSER == 1 || vm.userInfo.TYPEUSER == 0){
+				return '<span style="minheight:50px;">' +$filter("number")(data.sell_4,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.sell_6,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_8,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 2){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.sell_6,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_8,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 3){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.pvpr_8,2) + '</span>';
+			}else{
+				return '';
+			}
 		}
 		function priceClubDisplay(data, type, full, meta) {
 			return '<span style="minheight:50px;">' +$filter("number")(data,2)+'</span>';
@@ -216,15 +224,40 @@
 		}
 
 		function customizeDisplay(data, type, full, meta) {
-			return '<span style="minheight:50px;">' + $filter("number")(data.cst_fty,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.cst_zone,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.cst_cs,2) + '</span>';
+			if( vm.userInfo.TYPEUSER == 1 || vm.userInfo.TYPEUSER == 0){
+				return '<span style="minheight:50px;">' + $filter("number")(data.cst_fty,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.cst_zone,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.cst_cs,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 2){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.cst_zone,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.cst_cs,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 3){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.cst_cs,2) + '</span>';
+			}else{
+				return '';
+			}
+
 		}
 
 		function manualDisplay(data, type, full, meta) {
-			return '<span style="minheight:50px;">' + $filter("number")(data.sell_9,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.sell_10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_11,2) + '</span>';
+			if( vm.userInfo.TYPEUSER == 1 || vm.userInfo.TYPEUSER == 0){
+				return '<span style="minheight:50px;">' + $filter("number")(data.sell_9,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.sell_10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_11,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 2){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.sell_10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.pvpr_11,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 3){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.pvpr_11,2) + '</span>';
+			}else{
+				return '';
+			}
 		}
 
 		function validDisplay(data, type, full, meta) {
-			return '<span style="minheight:50px;">' + $filter("number")(data.valid9,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.valid10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.valid11,2) + '</span>';
+			if( vm.userInfo.TYPEUSER == 1 || vm.userInfo.TYPEUSER == 0){
+				return '<span style="minheight:50px;">' + $filter("number")(data.valid9,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.valid10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.valid11,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 2){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.valid10,2) + '</span><hr><span style="minheight:50px;">' + $filter("number")(data.valid11,2) + '</span>';
+			}else if(vm.userInfo.TYPEUSER == 3){
+				return '</span><span style="minheight:50px;">' + $filter("number")(data.valid11,2) + '</span>';
+			}else{
+				return '';
+			}
 		}
 
 		function actionsHtml(data, type, full, meta) {

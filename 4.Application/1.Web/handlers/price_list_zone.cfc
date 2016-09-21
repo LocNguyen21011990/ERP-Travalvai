@@ -59,7 +59,7 @@ component output="false" displayname=""  {
 			}
 		}
 		catch(any ex) {
-			event.renderData(type="json",data={ 'success' : false , 'message' : 'Delete price list zone failed!'});
+			event.renderData(type="json",data={ 'success' : false , 'message' : 'Delete price list zone failed!'&ex.message});
 		}
 	}
 

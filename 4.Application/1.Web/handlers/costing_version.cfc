@@ -289,7 +289,6 @@ component output="false" displayname=""  {
 								plfDetail = EntityNew("price_list_factory_detail");
 								plfDetail.setplfd_fty_cost_0(costingVersion.getCv_fty_cost_0());
 
-								// var fty_cc = currencyConvertService.getLatest_Cc(factory.getCurrency().getId_currency());
 								var plf_cc = item_plf.getPlf_Ex_Rate();
 
 								var plfd_fty_sell_1 = costingVersion.getcv_fty_cost_0() + costingVersion.getcv_fty_cost_0()*item_plf.getplf_correction()/100;
@@ -305,6 +304,7 @@ component output="false" displayname=""  {
 								plfDetail.setfactory(factory);
 								plfDetail.setcurrency(item_plf.getCurrency());
 								priceListFactoryDetailService.save(plfDetail);
+								// var idplzList = QueryExecute("select id_plz from price_list_zone where id_plz in (select id_plz from price_list_zone_details where id_plf_det:id_plfdet)");
 							}
 						}
 					}

@@ -1,9 +1,10 @@
 component output="false" displayname=""  {
-	property   name="PLZ_detailService"    inject="price_list_zone_detailsService";
-	property   name="PLZService"           inject="entityService:price_list_zone";
-	property   name="PLFService"           inject="entityService:price_list_factory";
+	property   name="PLZ_detailService"    			inject="price_list_zone_detailsService";
+	property   name="PLZService"           			inject="entityService:price_list_zone";
+	property   name="PLFService"          	 		inject="entityService:price_list_factory";
 	property   name='currencyConvertService' 	    inject='currency_convertService';
-	property   name="userService"          inject="userService";
+	property   name="userService"          			inject="userService";
+	property   name='numberService'               	inject='numberHelper';
 
 	public function init(){
 		return this;
@@ -86,13 +87,10 @@ component output="false" displayname=""  {
 
 					var costing 				= isNull(item.getPrice_list_factory_detail())?"":item.getPrice_list_factory_detail().getCosting();
 					var costing_v 				= isNull(item.getPrice_list_factory_detail())?"":item.getPrice_list_factory_detail().getCosting_version();
-
 					plz_detail.cost_code        = isNull(costing)    ?"":costing.getCost_code();
 					plz_detail.cv_version       = isNull(costing_v)  ?"":costing_v.getCv_version();
-
 					plz_detail.id_cost          = costing.getId_cost();
 					plz_detail.id_cost_version  = costing_v.getId_cost_version();
-
 					var cd 						= entityload("costing_description",{costing=costing,language=language},true);
 					var cvd 					= entityload("costing_version_description",{costing_version=costing_v,language=language},true);
 					plz_detail.cd_description   = isNull(cd)?"":cd.getCd_description();
@@ -132,13 +130,30 @@ component output="false" displayname=""  {
 			try {
 				if(rc.isRecomended ==1){
 					for(item in plzds){
-						item.setplzd_pvpr_8(item.getPlzd_PVPR_7());
+						var plzd_pvpr_8 = item.getPlzd_PVPR_7();
+						item.setplzd_pvpr_8(plzd_pvpr_8);
+						var plzd_margin_2 = val(numberService.roundDecimalPlaces((plzd_pvpr_8 - item.getPlzd_zone_sell_6())*100/plzd_pvpr_8,2));
+						item.setPlzd_margin_2(plzd_margin_2);
 						PLZ_detailService.save(item);
 					}
 				}
 				else{
 					for(item in plzds){
-						item.setPlzd_zone_sell_6(item.getPlzd_zone_sell_5());
+						var plzd_zone_sell_6 = item.getPlzd_zone_sell_5()
+						var plzd_fty_sell_4  = item.getPlzd_Fty_Sell_4();
+						var plzd_freight     = item.getPlzd_freight();
+						var plzd_taxes       = item.getPlzd_taxes();
+						var plzd_margin_1    = val(numberService.roundDecimalPlaces((plzd_zone_sell_6 - plzd_fty_sell_4 - plzd_freight - plzd_taxes)*100/(plzd_fty_sell_4 + plzd_freight + plzd_taxes),2));
+						var plzd_pvpr_7      = val(numberService.roundDecimalPlaces(plzd_zone_sell_6*100/(100 - plz.getplz_margin()),2));
+						var plzd_pvpr_8      = item.getPlzd_pvpr_8();
+						var plzd_margin_2    = val(numberService.roundDecimalPlaces((plzd_pvpr_8 - plzd_zone_sell_6)*100/plzd_pvpr_8,2));
+
+						item.setPlzd_zone_sell_6(plzd_zone_sell_6);
+						item.setPlzd_Margin_1(plzd_margin_1);
+						item.setPlzd_pvpr_7(plzd_pvpr_7);
+						item.setPlzd_pvpr_8(plzd_pvpr_8);
+						item.setPlzd_margin_2(plzd_margin_2);
+
 						PLZ_detailService.save(item);
 					}
 				}
@@ -212,10 +227,10 @@ component output="false" displayname=""  {
 				var plzd_fty_sell_4 = plz_det.getPlzd_Fty_Sell_4();
 				var plzd_freight = plz_det.getPlzd_freight();
 				var plzd_taxes = plz_det.getPlzd_taxes();
-				var plzd_margin_1 = val(numberFormat((rc.plzd_zone_sell_6 - plzd_fty_sell_4 - plzd_freight - plzd_taxes)*100/(plzd_fty_sell_4 + plzd_freight + plzd_taxes),"9.99"));
-				var plzd_pvpr_7 = val(numberFormat(rc.plzd_zone_sell_6*100/(100 - plz.getplz_margin()),"9.99"));
+				var plzd_margin_1 = val(numberService.roundDecimalPlaces((rc.plzd_zone_sell_6 - plzd_fty_sell_4 - plzd_freight - plzd_taxes)*100/(plzd_fty_sell_4 + plzd_freight + plzd_taxes),2));
+				var plzd_pvpr_7 = val(numberService.roundDecimalPlaces(rc.plzd_zone_sell_6*100/(100 - plz.getplz_margin()),2));
 				var plzd_pvpr_8 = rc.plzd_pvpr_8;
-				var plzd_margin_2 = val(numberFormat((plzd_pvpr_8 - rc.plzd_zone_sell_6)*100/plzd_pvpr_8,"9.99"));
+				var plzd_margin_2 = val(numberService.roundDecimalPlaces((plzd_pvpr_8 - rc.plzd_zone_sell_6)*100/plzd_pvpr_8,2));
 
 				plz_det.setplzd_Margin_1(plzd_margin_1);
 				plz_det.setPlzd_pvpr_7(plzd_pvpr_7);

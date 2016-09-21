@@ -40,7 +40,7 @@
 		text-align: left !important;
 	}
 	tr > th{
-	   background-color: #F4F4F4 !important; 
+	   background-color: #F4F4F4 !important;
 	}
 </style>
 <section id="widget-grid" class="" ng-app="price_list_zone_detail" ng-controller="BindAngularDirectiveCtrl as showCase" ng-cloak>
@@ -63,7 +63,7 @@
 										<div class="row">
 				                            <div class="col-md-3">
 				                            	<div class="form-group">
-											    	<label class="control-label  col-sm-6 text-left">P.L CODE</label>
+											    	<label class="control-label  col-sm-6 text-left">P.L. CODE</label>
 											    	<div class="col-sm-6">
 											    		<input class="form-control" type="text" name="plz_code" id="plz_code" ng-model="showCase.user.plz_code">
 										    		</div>
@@ -107,13 +107,13 @@
 				                            	<div class="row">
 					                            	<div class="col-md-6">
 						                            	<div class="form-group">
-													    	<label class="control-label col-sm-6 text-left">P.L.F CURRENCY</label>
+													    	<label class="control-label col-sm-6 text-left">P.L.F. CURRENCY</label>
 													    	<div class="col-sm-6">
 													    		<input class="form-control label1" type="text" name="plf_curr_code" id="plf_curr_code" ng-model="showCase.user.plf_curr_code" disabled="disabled">
 												    		</div>
 											    		</div>
 											    		<div class="form-group" ng-class="{'has-error':userForm.plz_curr.$invalid && !userForm.plz_curr.$pristine}">
-													    	<label class="control-label col-sm-6 text-left">P.L.Z CURRENCY</label>
+													    	<label class="control-label col-sm-6 text-left">P.L.Z. CURRENCY</label>
 													    	<div class="col-sm-6">
 					                                            <select ui-select2 id="plz_curr" name="plz_curr" ng-model="showCase.user.plz_curr" data-placeholder="Choose" ng-required="true" ng-change="showCase.changePLC()">
 																	<option ng-repeat="lang in showCase.currencylist" value="{{lang.id_currency}}">{{lang.curr_code}}</option>
@@ -147,13 +147,13 @@
 					                            	</div>
 					                            	<div class="col-md-6">
 					                            		<div class="form-group" ng-class="{'has-error':userForm.plf_cc_ex_rate.$invalid && !userForm.plf_cc_ex_rate.$pristine}">
-													    	<label class="control-label col-sm-6 text-left">EX.RATE (USD/<span data-ng-bind="showCase.user.plf_curr_code"></span>)</label>
+													    	<label class="control-label col-sm-6 text-left">EX. RATE (USD/<span data-ng-bind="showCase.user.plf_curr_code"></span>)</label>
 													    	<div class="col-sm-6">
 													    		<input class="form-control label1" type="text" name="plf_cc_ex_rate" id="plf_cc_ex_rate" ng-model="showCase.user.plf_cc_ex_rate" disabled>
 												    		</div>
 											    		</div>
 											    		<div class="form-group">
-													    	<label class="control-label col-sm-6 text-left">EX.RATE (USD/<span data-ng-bind="showCase.user.plz_curr_code"></span>)</label>
+													    	<label class="control-label col-sm-6 text-left">EX. RATE (USD/<span data-ng-bind="showCase.user.plz_curr_code"></span>)</label>
 													    	<div class="col-sm-6">
 													    		<input class="form-control label1" type="text" name="cc_value" id="cc_value" ng-model="showCase.user.cc_value" disabled>
 												    		</div>
@@ -181,7 +181,7 @@
 											    		</div>
 					                            	</div>
 				                            	</div>
-				                            	
+
 				                            </div>
 				                            <div class="col-md-3">
 				                            	<div class="form-group" ng-class="{'has-error':userForm.plz_correction.$invalid && !userForm.plz_correction.$pristine}">
@@ -333,13 +333,13 @@
 
 													<th>SELL PRICE</th>
 													<th>CURRENCY</th>
-																									
+
 
 													<th style="border-right-width: 1px;">RECOMENDED PRICE</th>
 
 
-													
-	                                    		</tr>	                                    		
+
+	                                    		</tr>
 	                                    	</thead>
 	                                    </table>
                                 	</div>

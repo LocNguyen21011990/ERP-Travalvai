@@ -2,6 +2,10 @@
     .select2-container{
         width:100%;
     }
+    .dt-toolbar{
+        padding-left:0px;
+        padding-right:0px;
+    }
     .modal-lg {
         width: 100%;
     }
@@ -25,9 +29,6 @@
     th.th-text-left{
         text-align: left !important;
     }
-
-
-
 </style>
 <section id="widget-grid" class="" ng-app='price.List.zone' ng-controller="BindAngularDirectiveCtrl as showCase">
     <div class="row">
@@ -367,72 +368,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--- <div class="modal fade" id="copydata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <button type="button" class="close" id="close" data-dismiss="modal" style="display:none;float:right;">&times;</button>
-                                            <legend class="fcollapsible" id="">Copy data</legend>
-                                            <div class="fcontent">
-                                                <form class="form-horizontal" name="copyForm" ng-submit="showCase.submitForm()" novalidate>
-                                                    <div class="form-group" ng-class="{'has-error' : copyForm.sourceseason.$invalid && !copyForm.sourceseason.$pristine}">
-                                                        <div class="col-md-6">
-                                                            <label class="col-md-4 control-label text-left">Source season</label>
-                                                            <div class="col-md-8">
-                                                                <select  ui-select2 id="sourceseason" name="sourceseason" ng-model="showCase.user.sourceseason" data-placeholder="Choose" ng-required="true" ng-change="showCase.changeSourceSeason()">
-                                                                    <option ng-repeat="lang in showCase.old_seasons" value="{{lang.ID}}">{{lang.SEASON}}</option>
-                                                                </select>
-                                                                 <p ng-show="copyForm.sourceseason.$error.required && !copyForm.sourceseason.$pristine" class="help-block">Source Season is required</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="col-md-4 control-label text-left">Source P.List</label>
-                                                            <div class="col-md-8">
-                                                                <select ng-disabled="showCase.isDisableSourcePList" ui-select2 id="sourceplz" name="sourceplz" ng-model="showCase.user.sourceplz" data-placeholder="Choose" ng-required="true" ng-change="showCase.changeSourcePList()" multiple="multiple">
-                                                                    <option value="allplz">All P.List</option>
-                                                                    <option ng-repeat="lang in showCase.arrPlist" value="{{lang.id_plz}}">{{lang.plz_code}}</option>
-                                                                </select>
-                                                                 <p ng-show="copyForm.sourceplz.$error.required && !copyForm.sourceplz.$pristine" class="help-block">Source P.List is required</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group" ng-class="{'has-error' : copyForm.destinationseason.$invalid && !copyForm.destinationseason.$pristine}">
-                                                        <div class="col-md-6">
-                                                            <label class="col-md-4 control-label text-left">Destination season</label>
-                                                            <div class="col-md-8">
-                                                                <select  ui-select2 id="destinationseason" name="destinationseason" ng-model="showCase.user.destinationseason" data-placeholder="Choose" ng-required="true">
-                                                                    <option ng-repeat="lang in showCase.newseasons" value="{{lang.season}}">{{lang.season}}</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="col-md-4 control-label text-left">Destination P.List</label>
-                                                            <div class="col-md-8">
-                                                                <input ng-readonly="showCase.isDisableDestinationPList" type="text" name="text_destinationplz" id="text_destinationplz" class="form-control" ng-required="true">
-                                                                <input type="hidden" name="destinationplz" id="destinationplz" class="form-control" ng-model="showCase.user.destinationplz">
-                                                                <p ng-show="copyForm.text_destinationplz.$error.required && !copyForm.text_destinationplz.$pristine" class="help-block">Destination P.List is required</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group text-center">
-                                                        <div class="col-md-3"></div>
-                                                        <div class="col-md-7">
-                                                            <div class="btn bg-color-blueDark txt-color-white" id="btnCopyData"  ng-click="showCase.CopyData()" ng-disabled="copyForm.$invalid">
-                                                                <i class="fa fa-save"></i>
-                                                                &nbsp;Add/Update
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <fieldset>
-                                        <div class="col-md-7"><legend class="fcollapsible">Price List Zone</legend></div>
+                                    <div>
+                                        <legend class="col-md-7 fcollapsible">Price List Zone</legend>
                                         <div class="btn col-md-2 bg-color-blueDark txt-color-white" id="btnCopyData" ng-click="showCase.showCopyData()">
                                             <i class="fa fa-save"></i>&nbsp;Create By Copy
                                         </div>
@@ -440,38 +379,36 @@
                                         <div class="btn col-md-2 bg-color-blueDark txt-color-white" id="btnAddNew" ng-click="showCase.showAddNew()">
                                             <i class="fa fa-save"></i>&nbsp;Create
                                         </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table id="datatable_fixed_column_1" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" style="display:none;">
-                                            <thead>
-                                                <tr>
-                                                    <th rowspan="2">CODE</th>
-                                                    <th rowspan="2">DESCRIPTION</th>
-                                                    <th rowspan="2">SEASON</th>
-                                                    <th colspan="2"  style="text-align:center;">PRICE LIST FACTORY</th>
-                                                    <th rowspan="2">P.L. CURRENCY</th>
-                                                    <th rowspan="2">EX. RATE</th>
-                                                    <th rowspan="2">DATE</th>
-                                                    <th rowspan="2">UPDATE</th>
-                                                    <th rowspan="2">CORRECTION</th>
-                                                    <th rowspan="2">COMMISSION</th>
-                                                    <th rowspan="2">FREIGHT</th>
-                                                    <th rowspan="2">TAXES</th>
-                                                    <th rowspan="2">MARGIN</th>
-                                                    <th rowspan="2">LANGUAGE</th>
-                                                    <th rowspan="2">DETAIL</th>
-                                                    <th rowspan="2"></th>
-                                                </tr>
-                                                <tr>
-                                                    <th></th>
-                                                    <th style="border-right-width: 1px;"></th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                        <div class="fcontent col-md-12">
+                                            <div class="table-responsive">
+                                                <table id="datatable_fixed_column_1" class="table table-striped table-bordered" width="100%" datatable dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" style="display:none;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th rowspan="2">CODE</th>
+                                                            <th rowspan="2">DESCRIPTION</th>
+                                                            <th rowspan="2">SEASON</th>
+                                                            <th colspan="2"  style="text-align:center;">PRICE LIST FACTORY</th>
+                                                            <th rowspan="2">P.L. CURRENCY</th>
+                                                            <th rowspan="2">EX. RATE</th>
+                                                            <th rowspan="2">DATE</th>
+                                                            <th rowspan="2">UPDATE</th>
+                                                            <th rowspan="2">CORRECTION</th>
+                                                            <th rowspan="2">COMMISSION</th>
+                                                            <th rowspan="2">FREIGHT</th>
+                                                            <th rowspan="2">TAXES</th>
+                                                            <th rowspan="2">MARGIN</th>
+                                                            <th rowspan="2">LANGUAGE</th>
+                                                            <th rowspan="2">DETAIL</th>
+                                                            <th rowspan="2"></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th style="border-right-width: 1px;"></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

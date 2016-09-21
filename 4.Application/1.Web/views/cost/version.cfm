@@ -43,40 +43,40 @@
                                         <table class="table no-border text-left">
                                             <tbody>
                                                 <tr>
-                                                    <td class="col-md-3"><span style="font-weight:bolder;">CODE: </span></td>
+                                                    <td class="col-md-3"><span style="font-weight:bolder;">CODE </span></td>
                                                     <td class="col-md-3"><span data-ng-bind="showCase.costing.COST_CODE"></span></td>
-                                                    <td class="col-md-2"><span style="font-weight:bolder;">PR.LIST: </span></td>
+                                                    <td class="col-md-2"><span style="font-weight:bolder;">PRICE LIST </span></td>
                                                     <td class="col-md-4"><span data-ng-bind="showCase.costing.COST_PL"></span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span style="font-weight:bolder;">DESCRIPTION: </span></td>
+                                                    <td><span style="font-weight:bolder;">DESCRIPTION </span></td>
                                                     <td><span data-ng-bind="showCase.costing.DESCRIPTION"></span></td>
-                                                    <td><span style="font-weight:bolder;">CUSTOMER: </span></td>
+                                                    <td><span style="font-weight:bolder;">CUSTOMER </span></td>
                                                     <td><span data-ng-bind="showCase.costing.CS_NAME"></span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span style="font-weight:bolder;">TYPE OF PRODUCT: </span></td>
+                                                    <td><span style="font-weight:bolder;">TYPE OF PRODUCT </span></td>
                                                     <td><span data-ng-bind="showCase.costing.TP_CODE"></span></td>
-                                                    <td><span style="font-weight:bolder;">DATE: </span></td>
+                                                    <td><span style="font-weight:bolder;">DATE </span></td>
                                                     <td><span data-ng-bind="showCase.costing.COST_DATE"></span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span style="font-weight:bolder;">DESCRIPTION: </span></td>
+                                                    <td><span style="font-weight:bolder;">DESCRIPTION </span></td>
                                                     <td><span data-ng-bind="showCase.costing.TP_DESCRIPTION"></span></td>
-                                                    <td><span style="font-weight:bolder;">UPDATE: </span></td>
+                                                    <td><span style="font-weight:bolder;">UPDATE </span></td>
                                                     <td><span data-ng-bind="showCase.costing.COST_UPDATE"></span></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span style="font-weight:bolder;">CURRENCY: </span></td>
+                                                    <td><span style="font-weight:bolder;">CURRENCY </span></td>
                                                     <td><span data-ng-bind="showCase.costing.FCURRENCY"></span></span></td>
-                                                    <td><span style="font-weight:bolder;">WEIGHT (gr): </span></td>
+                                                    <td><span style="font-weight:bolder;">WEIGHT (gr) </span></td>
                                                     <td><span data-ng-bind="showCase.costing.COST_WEIGHT"></span></td>
 
                                                 </tr>
                                                 <tr>
-                                                    <td><span style="font-weight:bolder;">SEASON: </span></td>
+                                                    <td><span style="font-weight:bolder;">SEASON </span></td>
                                                     <td><span data-ng-bind="showCase.costing.COST_SEASON"></span></td>
-                                                    <td><span style="font-weight:bolder;">VOLUME (cm3): </span></td>
+                                                    <td><span style="font-weight:bolder;">VOLUME (cm3) </span></td>
                                                     <td><span data-ng-bind="showCase.costing.COST_VOLUME"></span></td>
                                                 </tr>
                                             </tbody>
@@ -116,7 +116,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close" id="close" data-dismiss="modal" style="display:none;float:right;">&times;</button>
-                        <legend class="fcollapsible" id="titleID">Create</legend>
+                        <legend class="fcollapsible" id="titleID"><strong>Create</strong></legend>
                         <div class="fcontent">
                             <form class="form-horizontal" name="userForm" ng-submit="showCase.submitForm()" novalidate>
                                 <input type="hidden" id="id_cost_version" value="0">
